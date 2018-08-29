@@ -91,7 +91,7 @@
 <li><strong>Prepare the data set:</strong> I choose to use the format called <a href="https://math.nist.gov/MatrixMarket" target="_blank" rel="noopener">Matrix Market</a>. So I wrote a cpp code to transform the data format.</li>
 <li><strong>Remove all dependency of Taco:</strong> The reason is that I find when <em>Taco</em> reading a matrix from disk, it try to malloc a huge memory and make a error. However, I think it should not use such memory, because for sparse matrix, the space to use is only related to the number of edges. Then, I want to rewrite the I/O part of <em>Taco</em>. But it bind tightly with the whole <em>data structure of tensor</em>. So I refactor the project and remove the all denpendency of <em>Taco</em>. Now, I design a tensor data structure by myself.</li>
 </ul>
-<h6 id="Talking-Content"><a href="#Talking-Content" class="headerlink" title="Talking Content"></a>Talking Content</h6><p><img src="/images/SDH.jpg" alt=""></p>
+<h6 id="Talking-Content"><a href="#Talking-Content" class="headerlink" title="Talking Content"></a>Talking Content</h6><p><img src="/images/SDH.jpeg" alt=""></p>
 <h6 id="Works-Plan-of-Next-Week"><a href="#Works-Plan-of-Next-Week" class="headerlink" title="Works Plan of Next Week"></a>Works Plan of Next Week</h6><ul>
 <li><strong>Improve the page rank algorithm:</strong> design the sparse version of approximate algorithm. which could make it run with huge data set(200k vertexs).</li>
 <li><strong>Analyze the workflow:</strong> When DARPA decide three or four problem, we would try to analyze the problem. Maybe we would go to NEU.</li>
@@ -108,7 +108,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/29/first-post/" data-id="cjlfktbxh00009x4mt5xtdasp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/29/first-post/" data-id="cjlfkv55e0000bj4m8vw502qr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/summary/">summary</a></li></ul>
