@@ -7,18 +7,20 @@
   
   <title>first-post | Zhou Zhe&#39;s Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="First">
-<meta name="keywords" content="Blog">
+  <meta name="description" content="Talk With Prof. Suresh in Aug 28, 2018Works Summary of Last Week Clear the misunderstanding of approximate algorithm: the terminate state is not whole vertexs keep unchanged. We can tolerant a part of">
+<meta name="keywords" content="summary">
 <meta property="og:type" content="article">
 <meta property="og:title" content="first-post">
 <meta property="og:url" content="http://yoursite.com/2018/08/29/first-post/index.html">
 <meta property="og:site_name" content="Zhou Zhe&#39;s Home">
-<meta property="og:description" content="First">
+<meta property="og:description" content="Talk With Prof. Suresh in Aug 28, 2018Works Summary of Last Week Clear the misunderstanding of approximate algorithm: the terminate state is not whole vertexs keep unchanged. We can tolerant a part of">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-29T19:52:03.001Z">
+<meta property="og:image" content="http://yoursite.com/2018/08/29/first-post/images/SDH.jpeg">
+<meta property="og:updated_time" content="2018-08-29T20:01:38.164Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="first-post">
-<meta name="twitter:description" content="First">
+<meta name="twitter:description" content="Talk With Prof. Suresh in Aug 28, 2018Works Summary of Last Week Clear the misunderstanding of approximate algorithm: the terminate state is not whole vertexs keep unchanged. We can tolerant a part of">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/29/first-post/images/SDH.jpeg">
   
     <link rel="alternate" href="/atom.xml" title="Zhou Zhe&#39;s Home" type="application/atom+xml">
   
@@ -87,13 +89,32 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="First"><a href="#First" class="headerlink" title="First"></a>First</h2>
+        <h2 id="Talk-With-Prof-Suresh-in-Aug-28-2018"><a href="#Talk-With-Prof-Suresh-in-Aug-28-2018" class="headerlink" title="Talk With Prof. Suresh in Aug 28, 2018"></a>Talk With Prof. Suresh in Aug 28, 2018</h2><h6 id="Works-Summary-of-Last-Week"><a href="#Works-Summary-of-Last-Week" class="headerlink" title="Works Summary of Last Week"></a>Works Summary of Last Week</h6><ul>
+<li><strong>Clear the misunderstanding of approximate algorithm:</strong> the terminate state is not whole vertexs keep unchanged. We can tolerant a part of vertexs keep changing. So I introduce a new incoming argument _r_, which indicate the termination rate: if less than 1% of vertexs keep changing, then we can terminate the approximate algorithm.</li>
+<li><strong>Fix the bug in kernel opencl:</strong> I had misused the <em>local memory</em> in opencl, now I have fixed it.</li>
+<li><strong>Prepare the data set:</strong> I choose to use the format called <a href="https://math.nist.gov/MatrixMarket" target="_blank" rel="noopener">Matrix Market</a>. So I wrote a cpp code to transform the data format.</li>
+<li><strong>Remove all dependency of Taco:</strong> The reason is that I find when <em>Taco</em> reading a matrix from disk, it try to malloc a huge memory and make a error. However, I think it should not use such memory, because for sparse matrix, the space to use is only related to the number of edges. Then, I want to rewrite the I/O part of <em>Taco</em>. But it bind tightly with the whole <em>data structure of tensor</em>. So I refactor the project and remove the all denpendency of <em>Taco</em>. Now, I design a tensor data structure by myself.</li>
+</ul>
+<h6 id="Talking-Content"><a href="#Talking-Content" class="headerlink" title="Talking Content"></a>Talking Content</h6><p><img src="images/SDH.jpeg" alt="SDH" width="100%" height="100%"></p>
+<h6 id="Works-Plan-of-Next-Week"><a href="#Works-Plan-of-Next-Week" class="headerlink" title="Works Plan of Next Week"></a>Works Plan of Next Week</h6><ul>
+<li><strong>Improve the page rank algorithm:</strong> design the sparse version of approximate algorithm. which could make it run with huge data set(200k vertexs).</li>
+<li><strong>Analyze the workflow:</strong> When DARPA decide three or four problem, we would try to analyze the problem. Maybe we would go to NEU.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The general information provided is expected to include identification of significant kernels/functions; algorithmic complexity; performance bottlenecks; description of data and any ETL requirements; opportunities for parallelization; and areas for optimization.  The performers are not expected to provide any information about performance of workloads on their proposed architectures.  If performance on an architecture is provided as part of the workflow analysis, it will be shared with the SDH community.</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Think about the procedure and data properties of page rank(and other problem): </strong> Deside use what kernel or algorithm by data properties in runtime.</li>
+<li><strong>A result reusing problem:</strong> If we have got a partial result in one algorithm in one kernel, how can we transform the result to another algorithm in another kernel to resue this partial result.</li>
+<li><strong>Preview the meta language:</strong> From Ocaml of Common Lisp.</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/29/first-post/" data-id="cjlfk529l00002w4mzjrkz72r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/29/first-post/" data-id="cjlfkj48n00006w4mh80lezuo" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/summary/">summary</a></li></ul>
+
     </footer>
   </div>
   
@@ -109,9 +130,23 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/summary/">summary</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/summary/" style="font-size: 10px;">summary</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
