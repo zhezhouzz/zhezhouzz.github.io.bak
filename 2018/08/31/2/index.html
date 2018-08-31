@@ -5,16 +5,20 @@
   
 
   
-  <title>Zhou Zhe&#39;s Home</title>
+  <title>Meeting in Aug 31, 2018 | Zhou Zhe&#39;s Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zhou Zhe&#39;s Home">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="Important Points Workflow Assignment: 19: Tokenization: Segment text from strings of characters/symbols into linguistic units like words and sentences. 22: Named Entity Recognition: Classify named ent">
+<meta name="keywords" content="Blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Meeting in Aug 31, 2018">
+<meta property="og:url" content="http://yoursite.com/2018/08/31/2/index.html">
 <meta property="og:site_name" content="Zhou Zhe&#39;s Home">
+<meta property="og:description" content="Important Points Workflow Assignment: 19: Tokenization: Segment text from strings of characters/symbols into linguistic units like words and sentences. 22: Named Entity Recognition: Classify named ent">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-31T17:15:52.055Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zhou Zhe&#39;s Home">
+<meta name="twitter:title" content="Meeting in Aug 31, 2018">
+<meta name="twitter:description" content="Important Points Workflow Assignment: 19: Tokenization: Segment text from strings of characters/symbols into linguistic units like words and sentences. 22: Named Entity Recognition: Classify named ent">
   
     <link rel="alternate" href="/atom.xml" title="Zhou Zhe&#39;s Home" type="application/atom+xml">
   
@@ -61,9 +65,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-2" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/08/31/2/" class="article-date">
   <time datetime="2018-08-31T16:57:03.000Z" itemprop="datePublished">2018-08-31</time>
@@ -76,8 +78,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/31/2/">Meeting in Aug 31, 2018</a>
+    <h1 class="article-title" itemprop="name">
+      Meeting in Aug 31, 2018
     </h1>
   
 
@@ -111,68 +113,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-first-post" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/08/29/first-post/" class="article-date">
-  <time datetime="2018-08-29T19:51:33.000Z" itemprop="datePublished">2018-08-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/29/first-post/">Talk With Prof. Suresh in Aug 28, 2018</a>
-    </h1>
+    <a href="/2018/08/29/first-post/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Talk With Prof. Suresh in Aug 28, 2018</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h6 id="Works-Summary-of-Last-Week"><a href="#Works-Summary-of-Last-Week" class="headerlink" title="Works Summary of Last Week"></a>Works Summary of Last Week</h6><ul>
-<li><strong>Clear the misunderstanding of approximate algorithm:</strong> the terminate state is not whole vertexs keep unchanged. We can tolerant a part of vertexs keep changing. So I introduce a new incoming argument _r_, which indicate the termination rate: if less than 1% of vertexs keep changing, then we can terminate the approximate algorithm.</li>
-<li><strong>Fix the bug in kernel opencl:</strong> I had misused the <em>local memory</em> in opencl, now I have fixed it.</li>
-<li><strong>Prepare the data set:</strong> I choose to use the format called <a href="https://math.nist.gov/MatrixMarket" target="_blank" rel="noopener">Matrix Market</a>. So I wrote a cpp code to transform the data format.</li>
-<li><strong>Remove all dependency of Taco:</strong> The reason is that I find when <em>Taco</em> reading a matrix from disk, it try to malloc a huge memory and make a error. However, I think it should not use such memory, because for sparse matrix, the space to use is only related to the number of edges. Then, I want to rewrite the I/O part of <em>Taco</em>. But it bind tightly with the whole <em>data structure of tensor</em>. So I refactor the project and remove the all denpendency of <em>Taco</em>. Now, I design a tensor data structure by myself.</li>
-</ul>
-<h6 id="Talking-Content"><a href="#Talking-Content" class="headerlink" title="Talking Content"></a>Talking Content</h6><p><img src="/images/SDH.jpeg" alt="SDH" width="100%" height="100%"></p>
-<h6 id="Works-Plan-of-Next-Week"><a href="#Works-Plan-of-Next-Week" class="headerlink" title="Works Plan of Next Week"></a>Works Plan of Next Week</h6><ul>
-<li><strong>Improve the page rank algorithm:</strong> design the sparse version of approximate algorithm. which could make it run with huge data set(200k vertexs).</li>
-<li><strong>Analyze the workflow:</strong> When DARPA decide three or four problem, we would try to analyze the problem. Maybe we would go to NEU.</li>
-</ul>
-<blockquote>
-<p>The general information provided is expected to include identification of significant kernels/functions; algorithmic complexity; performance bottlenecks; description of data and any ETL requirements; opportunities for parallelization; and areas for optimization.  The performers are not expected to provide any information about performance of workloads on their proposed architectures.  If performance on an architecture is provided as part of the workflow analysis, it will be shared with the SDH community.</p>
-</blockquote>
-<ul>
-<li><strong>Think about the procedure and data properties of page rank(and other problem): </strong> Deside use what kernel or algorithm by data properties in runtime.</li>
-<li><strong>A result reusing problem:</strong> If we have got a partial result in one algorithm in one kernel, how can we transform the result to another algorithm in another kernel to resue this partial result.</li>
-<li><strong>Preview the meta language:</strong> From Ocaml of Common Lisp.</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/29/first-post/" data-id="cjlfk3gjb00002i4mr07rt8gf" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/summary/">summary</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         
