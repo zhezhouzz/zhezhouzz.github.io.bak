@@ -63,6 +63,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-reading-group-xy" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/08/31/reading-group-xy/" class="article-date">
+  <time datetime="2018-08-31T19:06:18.000Z" itemprop="datePublished">2018-08-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/31/reading-group-xy/">reading_group_xy</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Reluplex-An-Efficient-SMT-Solver-for-Verifying-Deep-Neural-Networks"><a href="#Reluplex-An-Efficient-SMT-Solver-for-Verifying-Deep-Neural-Networks" class="headerlink" title="Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks"></a>Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks</h4><ul>
+<li><p><a href="https://arxiv.org/pdf/1702.01135.pdf" target="_blank" rel="noopener">Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks</a></p>
+</li>
+<li><p>To proof the NN is worked:</p>
+<ul>
+<li>In the past, we have some old algorithm besides deep learning, the reseachers design a very complex rule sets, which indicate what should a agent do when it in a situation. (A rule set restrict the input and output). But the data set is huge, and do bad when the agent meet the situation out of the rule set.</li>
+<li>To improve this, we use the deep learning. The NN need a data set to train, and every instance of the data set just fellow this rules. But, also there is some undescovered rules are hidden in the data set. Then the NN could do the same things like the traditional algorithm, but also could handle the situation outside the rule sets.</li>
+<li>However, we should prove that the NN do the same things like the old algorithm. And this is what it paper talking about. For each rule in the rule sets, we can convert it to a restriction to input and output. And this could be encode to a SMT problem, which could resolve by SMT solver.</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/08/31/reading-group-xy/" data-id="cjlidczfs00042i5vrofh5a23" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/08/31/2/" class="article-date">
@@ -215,6 +262,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/08/31/reading-group-xy/">reading_group_xy</a>
+          </li>
         
           <li>
             <a href="/2018/08/31/2/">Meeting in Aug 31, 2018</a>
