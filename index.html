@@ -63,6 +63,68 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-non-euclidean-data" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/04/non-euclidean-data/" class="article-date">
+  <time datetime="2018-09-04T19:12:25.000Z" itemprop="datePublished">2018-09-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/04/non-euclidean-data/">non-euclidean-data</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Geometric-deep-learning-going-beyond-Euclidean-data"><a href="#Geometric-deep-learning-going-beyond-Euclidean-data" class="headerlink" title="Geometric deep learning: going beyond Euclidean data"></a><a href="https://arxiv.org/pdf/1611.08097.pdf" target="_blank" rel="noopener">Geometric deep learning: going beyond Euclidean data</a></h4><ul>
+<li><p>Euclidean data: have Euclidean properties. Like global parameterization, common system of coordinates, vector space structure, shift-invariance.</p>
+<ul>
+<li>Text sequence is Euclidean data. The _N_ is the set of word. the test sequence is one-dimension vector of _N_.</li>
+<li>Image is Eucliean data. It is a 2-grid data.</li>
+<li>Video is Eucliean data, it is a 3-grid data.</li>
+</ul>
+</li>
+<li><p>non-Eucliean data: geometric like, graph.</p>
+<ul>
+<li>social network: people and people could construct a graph, then every vertex of the graph have a sequence of action. The history action of people is relevant with the other people’s action.</li>
+<li>sensor networks: every sensor in the network has a sequence of signal.</li>
+<li>3D-vision. The surface of 3D object are not Euclidean space, but we could cut every piece of surface to treat them as a manifold. Then we could use the CNN or other algorithm in these manifold.</li>
+<li>recommander system(<em><a href="https://arxiv.org/pdf/1704.06803.pdf" target="_blank" rel="noopener">Geometric Matrix Completion with Recurrent Multi-Graph Neural Networks</a></em>): the basic recommander system is a matrix, the one coordinate is user, the other is the object. The value of matrix is the score user give to the object. However, actually there is a graph connected the user, the edges indicate they have the same properties(age, gender, tendency…), on the other head, there is also a graph of objects. Then the two graph have some connect, these relationship has a projection in the 2-dimension matrix. Figure from <em><a href="https://arxiv.org/pdf/1704.06803.pdf" target="_blank" rel="noopener">Geometric Matrix Completion with Recurrent Multi-Graph Neural Networks</a>:</em></li>
+<li><img src="/images/recommander-system.jpg" alt="recommander-system"></li>
+</ul>
+</li>
+<li><p>Some approach:</p>
+<ul>
+<li>Euclidean CNN vs. Geometric CNN.</li>
+<li><img src="/images/Geometric-CNN.jpg" alt="Geometric-CNN"></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/04/non-euclidean-data/" data-id="cjlo3ca2b00082i5wc4do75p9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML-paper-reading/">ML, paper-reading</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-sdh-workflow-investigation" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/03/sdh-workflow-investigation/" class="article-date">
@@ -334,7 +396,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdh/">sdh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/summary/">summary</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-paper-reading/">ML, paper-reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdh/">sdh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/summary/">summary</a></li></ul>
     </div>
   </div>
 
@@ -344,7 +406,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/sdh/" style="font-size: 10px;">sdh</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a>
+      <a href="/tags/ML-paper-reading/" style="font-size: 10px;">ML, paper-reading</a> <a href="/tags/sdh/" style="font-size: 10px;">sdh</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a>
     </div>
   </div>
 
@@ -364,6 +426,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/09/04/non-euclidean-data/">non-euclidean-data</a>
+          </li>
         
           <li>
             <a href="/2018/09/03/sdh-workflow-investigation/">sdh-workflow-investigation</a>

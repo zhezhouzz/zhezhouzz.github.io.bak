@@ -5,20 +5,23 @@
   
 
   
-  <title>reading_group_xy | Zhou Zhe&#39;s Home</title>
+  <title>non-euclidean-data | Zhou Zhe&#39;s Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks  To proof the NN is worked:  In the past, we have some old alg">
-<meta name="keywords" content="Blog">
+  <meta name="description" content="Geometric deep learning: going beyond Euclidean data Euclidean data: have Euclidean properties. Like global parameterization, common system of coordinates, vector space structure, shift-invariance.  T">
+<meta name="keywords" content="ML, paper-reading">
 <meta property="og:type" content="article">
-<meta property="og:title" content="reading_group_xy">
-<meta property="og:url" content="http://yoursite.com/2018/08/31/reading-group-xy/index.html">
+<meta property="og:title" content="non-euclidean-data">
+<meta property="og:url" content="http://yoursite.com/2018/09/04/non-euclidean-data/index.html">
 <meta property="og:site_name" content="Zhou Zhe&#39;s Home">
-<meta property="og:description" content="Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks  To proof the NN is worked:  In the past, we have some old alg">
+<meta property="og:description" content="Geometric deep learning: going beyond Euclidean data Euclidean data: have Euclidean properties. Like global parameterization, common system of coordinates, vector space structure, shift-invariance.  T">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-31T19:17:21.697Z">
+<meta property="og:image" content="http://yoursite.com/images/recommander-system.jpg">
+<meta property="og:image" content="http://yoursite.com/images/Geometric-CNN.jpg">
+<meta property="og:updated_time" content="2018-09-04T19:38:25.628Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="reading_group_xy">
-<meta name="twitter:description" content="Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks  To proof the NN is worked:  In the past, we have some old alg">
+<meta name="twitter:title" content="non-euclidean-data">
+<meta name="twitter:description" content="Geometric deep learning: going beyond Euclidean data Euclidean data: have Euclidean properties. Like global parameterization, common system of coordinates, vector space structure, shift-invariance.  T">
+<meta name="twitter:image" content="http://yoursite.com/images/recommander-system.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Zhou Zhe&#39;s Home" type="application/atom+xml">
   
@@ -65,10 +68,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-reading-group-xy" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-non-euclidean-data" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/08/31/reading-group-xy/" class="article-date">
-  <time datetime="2018-08-31T19:06:18.000Z" itemprop="datePublished">2018-08-31</time>
+    <a href="/2018/09/04/non-euclidean-data/" class="article-date">
+  <time datetime="2018-09-04T19:12:25.000Z" itemprop="datePublished">2018-09-04</time>
 </a>
     
   </div>
@@ -79,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      reading_group_xy
+      non-euclidean-data
     </h1>
   
 
@@ -87,14 +90,27 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Reluplex-An-Efficient-SMT-Solver-for-Verifying-Deep-Neural-Networks"><a href="#Reluplex-An-Efficient-SMT-Solver-for-Verifying-Deep-Neural-Networks" class="headerlink" title="Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks"></a>Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks</h4><ul>
-<li><p><a href="https://arxiv.org/pdf/1702.01135.pdf" target="_blank" rel="noopener">Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks</a></p>
-</li>
-<li><p>To proof the NN is worked:</p>
+        <h4 id="Geometric-deep-learning-going-beyond-Euclidean-data"><a href="#Geometric-deep-learning-going-beyond-Euclidean-data" class="headerlink" title="Geometric deep learning: going beyond Euclidean data"></a><a href="https://arxiv.org/pdf/1611.08097.pdf" target="_blank" rel="noopener">Geometric deep learning: going beyond Euclidean data</a></h4><ul>
+<li><p>Euclidean data: have Euclidean properties. Like global parameterization, common system of coordinates, vector space structure, shift-invariance.</p>
 <ul>
-<li>In the past, we have some old algorithm besides deep learning, the reseachers design a very complex rule sets, which indicate what should a agent do when it in a situation. (A rule set restrict the input and output). But the data set is huge, and do bad when the agent meet the situation out of the rule set.</li>
-<li>To improve this, we use the deep learning. The NN need a data set to train, and every instance of the data set just fellow this rules. But, also there is some undescovered rules are hidden in the data set. Then the NN could do the same things like the traditional algorithm, but also could handle the situation outside the rule sets.</li>
-<li>However, we should prove that the NN do the same things like the old algorithm. And this is what it paper talking about. For each rule in the rule sets, we can convert it to a restriction to input and output. And this could be encode to a SMT problem, which could resolve by SMT solver.</li>
+<li>Text sequence is Euclidean data. The _N_ is the set of word. the test sequence is one-dimension vector of _N_.</li>
+<li>Image is Eucliean data. It is a 2-grid data.</li>
+<li>Video is Eucliean data, it is a 3-grid data.</li>
+</ul>
+</li>
+<li><p>non-Eucliean data: geometric like, graph.</p>
+<ul>
+<li>social network: people and people could construct a graph, then every vertex of the graph have a sequence of action. The history action of people is relevant with the other people’s action.</li>
+<li>sensor networks: every sensor in the network has a sequence of signal.</li>
+<li>3D-vision. The surface of 3D object are not Euclidean space, but we could cut every piece of surface to treat them as a manifold. Then we could use the CNN or other algorithm in these manifold.</li>
+<li>recommander system(<em><a href="https://arxiv.org/pdf/1704.06803.pdf" target="_blank" rel="noopener">Geometric Matrix Completion with Recurrent Multi-Graph Neural Networks</a></em>): the basic recommander system is a matrix, the one coordinate is user, the other is the object. The value of matrix is the score user give to the object. However, actually there is a graph connected the user, the edges indicate they have the same properties(age, gender, tendency…), on the other head, there is also a graph of objects. Then the two graph have some connect, these relationship has a projection in the 2-dimension matrix. Figure from <em><a href="https://arxiv.org/pdf/1704.06803.pdf" target="_blank" rel="noopener">Geometric Matrix Completion with Recurrent Multi-Graph Neural Networks</a>:</em></li>
+<li><img src="/images/recommander-system.jpg" alt="recommander-system"></li>
+</ul>
+</li>
+<li><p>Some approach:</p>
+<ul>
+<li>Euclidean CNN vs. Geometric CNN.</li>
+<li><img src="/images/Geometric-CNN.jpg" alt="Geometric-CNN"></li>
 </ul>
 </li>
 </ul>
@@ -102,28 +118,21 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/31/reading-group-xy/" data-id="cjlidczfs00042i5vrofh5a23" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/04/non-euclidean-data/" data-id="cjlo3ca2b00082i5wc4do75p9" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML-paper-reading/">ML, paper-reading</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2018/09/03/sdh-workflow-investigation/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          sdh-workflow-investigation
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/08/31/2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/09/03/sdh-workflow-investigation/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Meeting in Aug 31, 2018</div>
+      <div class="article-nav-title">sdh-workflow-investigation</div>
     </a>
   
 </nav>
