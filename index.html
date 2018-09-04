@@ -172,6 +172,7 @@
 <li>previous works:  focused on embedding nodes from a single fixed graph, and many real-world applications require embeddings to be quickly generated for unseen nodes, or entirely new (sub)graphs. the weight matrices are not relevant between nodes.</li>
 <li>contribution: simple neighborhood, aggreagate feature information from neighbos.<ul>
 <li>first construct a graph of neighborhood with fix num _n_ (if neighbors numer greater than <em>max degree</em>, random drop some. if neighbors numer less than <em>max degree</em>, random reuse some).</li>
+<li><img src="/images/GraphSAGE-algo.jpg" alt="GraphSAGE-algo"></li>
 <li>embedding generation. for depth k:<ul>
 <li>for each node v:<ul>
 <li>AGGREGATE v’s neighbors(mean, GCN, LSTM, pooling).</li>
