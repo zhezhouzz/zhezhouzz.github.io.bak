@@ -63,6 +63,60 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-talk-with-Prof-Suresh-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/04/talk-with-Prof-Suresh-2/" class="article-date">
+  <time datetime="2018-09-04T20:52:44.000Z" itemprop="datePublished">2018-09-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/04/talk-with-Prof-Suresh-2/">talk-with-Prof.Suresh-2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Start-of-workflow"><a href="#Start-of-workflow" class="headerlink" title="Start of workflow"></a>Start of workflow</h4><ul>
+<li><em>19: Tokenization</em>.</li>
+<li><em>46: Node Classification</em>.</li>
+</ul>
+<h4 id="Talk-summary"><a href="#Talk-summary" class="headerlink" title="Talk summary"></a>Talk summary</h4><ul>
+<li>try to find the data properties of the <em>Tokenization</em> and <em>Node Classification</em>, just like we do in the <em>PageRank</em>: the graph is dense or sparse, how many node in the graph, how many edges in the graph, the underlying properties(some node are very close like a cluster, and the node between cluster are hardly have link).</li>
+<li>According to these properties, design some algorithms and implementations for different properties.<ul>
+<li>like there are so many punctuation(especaily the infix in the word) in the document, we can not cannot calculate it in parallel, as a word with a lot of punctuations could be a large graph, and this would delay the analize of whole document. So we have a data properties: rich-punctuation and barren-punctuation.</li>
+<li>Algorithm.<ul>
+<li>branch predict algorithm: predict there is a prefix or suffix in the word, and continue. If have a hazard, then handle it. This is fit the rich-punctuation document.</li>
+<li>parallel algorithm: assign the word to the different <em>checker</em> in different thread. <em>cheacker</em> could search the database and return if the word in the database. The we merge the result of <em>checker</em>. This is fit the barren-punctuation document.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/04/talk-with-Prof-Suresh-2/" data-id="cjlo6x998000d2i5www9ybnbc" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Prof-Suresh/">Prof.Suresh</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-non-euclidean-data" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/04/non-euclidean-data/" class="article-date">
@@ -397,7 +451,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-paper-reading/">ML paper-reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdh/">sdh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/summary/">summary</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-paper-reading/">ML paper-reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Prof-Suresh/">Prof.Suresh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdh/">sdh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/summary/">summary</a></li></ul>
     </div>
   </div>
 
@@ -407,7 +461,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ML-paper-reading/" style="font-size: 10px;">ML paper-reading</a> <a href="/tags/sdh/" style="font-size: 10px;">sdh</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a>
+      <a href="/tags/ML-paper-reading/" style="font-size: 10px;">ML paper-reading</a> <a href="/tags/Prof-Suresh/" style="font-size: 10px;">Prof.Suresh</a> <a href="/tags/sdh/" style="font-size: 10px;">sdh</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a>
     </div>
   </div>
 
@@ -429,6 +483,10 @@
       <ul>
         
           <li>
+            <a href="/2018/09/04/talk-with-Prof-Suresh-2/">talk-with-Prof.Suresh-2</a>
+          </li>
+        
+          <li>
             <a href="/2018/09/04/non-euclidean-data/">non-euclidean-data</a>
           </li>
         
@@ -442,10 +500,6 @@
         
           <li>
             <a href="/2018/08/31/2/">Meeting in Aug 31, 2018</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/29/first-post/">Talk With Prof. Suresh in Aug 28, 2018</a>
           </li>
         
       </ul>

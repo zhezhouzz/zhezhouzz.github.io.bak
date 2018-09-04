@@ -5,20 +5,20 @@
   
 
   
-  <title>reading_group_xy | Zhou Zhe&#39;s Home</title>
+  <title>talk-with-Prof.Suresh-2 | Zhou Zhe&#39;s Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks  To proof the NN is worked:  In the past, we have some old alg">
-<meta name="keywords" content="Blog">
+  <meta name="description" content="Start of workflow 19: Tokenization. 46: Node Classification.  Talk summary try to find the data properties of the Tokenization and Node Classification, just like we do in the PageRank: the graph is de">
+<meta name="keywords" content="Prof.Suresh">
 <meta property="og:type" content="article">
-<meta property="og:title" content="reading_group_xy">
-<meta property="og:url" content="http://yoursite.com/2018/08/31/reading-group-xy/index.html">
+<meta property="og:title" content="talk-with-Prof.Suresh-2">
+<meta property="og:url" content="http://yoursite.com/2018/09/04/talk-with-Prof-Suresh-2/index.html">
 <meta property="og:site_name" content="Zhou Zhe&#39;s Home">
-<meta property="og:description" content="Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks  To proof the NN is worked:  In the past, we have some old alg">
+<meta property="og:description" content="Start of workflow 19: Tokenization. 46: Node Classification.  Talk summary try to find the data properties of the Tokenization and Node Classification, just like we do in the PageRank: the graph is de">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-31T19:17:21.697Z">
+<meta property="og:updated_time" content="2018-09-04T21:22:45.931Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="reading_group_xy">
-<meta name="twitter:description" content="Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks  To proof the NN is worked:  In the past, we have some old alg">
+<meta name="twitter:title" content="talk-with-Prof.Suresh-2">
+<meta name="twitter:description" content="Start of workflow 19: Tokenization. 46: Node Classification.  Talk summary try to find the data properties of the Tokenization and Node Classification, just like we do in the PageRank: the graph is de">
   
     <link rel="alternate" href="/atom.xml" title="Zhou Zhe&#39;s Home" type="application/atom+xml">
   
@@ -65,10 +65,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-reading-group-xy" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-talk-with-Prof-Suresh-2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/08/31/reading-group-xy/" class="article-date">
-  <time datetime="2018-08-31T19:06:18.000Z" itemprop="datePublished">2018-08-31</time>
+    <a href="/2018/09/04/talk-with-Prof-Suresh-2/" class="article-date">
+  <time datetime="2018-09-04T20:52:44.000Z" itemprop="datePublished">2018-09-04</time>
 </a>
     
   </div>
@@ -79,7 +79,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      reading_group_xy
+      talk-with-Prof.Suresh-2
     </h1>
   
 
@@ -87,14 +87,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="Reluplex-An-Efficient-SMT-Solver-for-Verifying-Deep-Neural-Networks"><a href="#Reluplex-An-Efficient-SMT-Solver-for-Verifying-Deep-Neural-Networks" class="headerlink" title="Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks"></a>Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks</h4><ul>
-<li><p><a href="https://arxiv.org/pdf/1702.01135.pdf" target="_blank" rel="noopener">Reluplex: An Efficient SMT Solver for Verifying Deep Neural Networks</a></p>
+        <h4 id="Start-of-workflow"><a href="#Start-of-workflow" class="headerlink" title="Start of workflow"></a>Start of workflow</h4><ul>
+<li><em>19: Tokenization</em>.</li>
+<li><em>46: Node Classification</em>.</li>
+</ul>
+<h4 id="Talk-summary"><a href="#Talk-summary" class="headerlink" title="Talk summary"></a>Talk summary</h4><ul>
+<li>try to find the data properties of the <em>Tokenization</em> and <em>Node Classification</em>, just like we do in the <em>PageRank</em>: the graph is dense or sparse, how many node in the graph, how many edges in the graph, the underlying properties(some node are very close like a cluster, and the node between cluster are hardly have link).</li>
+<li>According to these properties, design some algorithms and implementations for different properties.<ul>
+<li>like there are so many punctuation(especaily the infix in the word) in the document, we can not cannot calculate it in parallel, as a word with a lot of punctuations could be a large graph, and this would delay the analize of whole document. So we have a data properties: rich-punctuation and barren-punctuation.</li>
+<li>Algorithm.<ul>
+<li>branch predict algorithm: predict there is a prefix or suffix in the word, and continue. If have a hazard, then handle it. This is fit the rich-punctuation document.</li>
+<li>parallel algorithm: assign the word to the different <em>checker</em> in different thread. <em>cheacker</em> could search the database and return if the word in the database. The we merge the result of <em>checker</em>. This is fit the barren-punctuation document.</li>
+</ul>
 </li>
-<li><p>To proof the NN is worked:</p>
-<ul>
-<li>In the past, we have some old algorithm besides deep learning, the reseachers design a very complex rule sets, which indicate what should a agent do when it in a situation. (A rule set restrict the input and output). But the data set is huge, and do bad when the agent meet the situation out of the rule set.</li>
-<li>To improve this, we use the deep learning. The NN need a data set to train, and every instance of the data set just fellow this rules. But, also there is some undescovered rules are hidden in the data set. Then the NN could do the same things like the traditional algorithm, but also could handle the situation outside the rule sets.</li>
-<li>However, we should prove that the NN do the same things like the old algorithm. And this is what it paper talking about. For each rule in the rule sets, we can convert it to a restriction to input and output. And this could be encode to a SMT problem, which could resolve by SMT solver.</li>
 </ul>
 </li>
 </ul>
@@ -102,28 +107,21 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/31/reading-group-xy/" data-id="cjlidczfs00042i5vrofh5a23" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/04/talk-with-Prof-Suresh-2/" data-id="cjlo6x998000d2i5www9ybnbc" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Prof-Suresh/">Prof.Suresh</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2018/09/03/sdh-workflow-investigation/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          sdh-workflow-investigation
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/08/31/2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/09/04/non-euclidean-data/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Meeting in Aug 31, 2018</div>
+      <div class="article-nav-title">non-euclidean-data</div>
     </a>
   
 </nav>
