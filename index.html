@@ -63,6 +63,107 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-node-classification" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/07/node-classification/" class="article-date">
+  <time datetime="2018-09-07T16:22:41.000Z" itemprop="datePublished">2018-09-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/07/node-classification/">node classification, intro</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Node-Classification-or-Graph-Embedding"><a href="#Node-Classification-or-Graph-Embedding" class="headerlink" title="Node Classification or Graph Embedding"></a>Node Classification or Graph Embedding</h4><ul>
+<li><a href="https://arxiv.org/pdf/1706.02216.pdf" target="_blank" rel="noopener">Inductive Representation Learning on Large Graphs</a>.</li>
+</ul>
+<h5 id="Goals-Encode-Decode-and-Data-Transformation"><a href="#Goals-Encode-Decode-and-Data-Transformation" class="headerlink" title="Goals: Encode, Decode and Data Transformation"></a>Goals: Encode, Decode and Data Transformation</h5><ul>
+<li><p><strong>Distance</strong>: In the classical algorithm, if we can define a “distance” of two object, then we can classify them(such as K-means or others). For two high-dimensional vectors, the calculation of distance is easy, we have Euclidean distance or others. However, when the given data is a non-Euclidean data, especially a graph, we can not easily calculate the distance of two nodes. A reasonable definition of distance could be the length of a shortest route between two nodes. However, the complexity of calculating the shortest path between every two nodes is expensive. The traditional classification algorithm could not handle the non-Euclidean data.</p>
+</li>
+<li><p><strong>Embedding</strong>: In the view of math, a topology graph is a abstraction from a high-dimensional angle whose vertex is the origin of the coordinate(a graph with n node equal to a n-dimension object, which every node is located in one axis). To know this relation between the node of this angle, we do not need the information of the whole object. If we just project this object to a plane, we could also get the right distance. Converting a graph(is a high-dimensional object essentially) to a matrix(or a low-dimension vector) is called <em>Embedding</em>. Actually, the adjacency matrix is a method of embedding(because it loses a lot of information and the adjacency matrix itself is also complex).</p>
+</li>
+<li><p><img src="/images/embedding.jpeg" alt="embedding"></p>
+</li>
+<li><p><strong>Encode, Decode</strong>: The procedure for converting a graph to a matrix is called <em>encode</em>. We can also recover the graph by the encoded matrix, which is called <em>decode</em>. Then we can define a loss rate between the origin graph and “recovered graph”. If we use the <em>gradient descent</em> method to adjust the weight matrix to find the extremum of loss function, then we can find a reasonable encoder(because we would get a decode function, too. But it is useless at most of time).</p>
+</li>
+</ul>
+<h5 id="From-NLP-to-Node-Analysis-Matrix-Factorization"><a href="#From-NLP-to-Node-Analysis-Matrix-Factorization" class="headerlink" title="From NLP to Node Analysis, Matrix Factorization"></a>From NLP to Node Analysis, Matrix Factorization</h5><ul>
+<li><p>At first, the <em>Embedding</em> is used in NLP, which is called <em>word2vec</em>: <a href="https://arxiv.org/pdf/1301.3781.pdf" target="_blank" rel="noopener">Efficient Estimation of Word Representations in Vector Space</a>. Word2vec use a <em>Skip-gram Model</em> which is a NN that has three layers: input, hidden and output. The input to hidden is the encoder, the hidden to output is the decoder. The forward of this NN is “encode + decode”, thus when we are training this NN, the encode is more and more reliable. After training, we extract the hidden layer, it is the resulting low-dimension matrix we want.</p>
+</li>
+<li><p>Then, this approach are used in the graph data which is called <em>DeepWalk</em>: <a href="http://www.perozzi.net/publications/14_kdd_deepwalk.pdf" target="_blank" rel="noopener">DeepWalk: Online Learning of Social Representations</a>, <em>node2vec</em>: <a href="https://cs.stanford.edu/people/jure/pubs/node2vec-kdd16.pdf" target="_blank" rel="noopener">node2vec: Salable Feature Learning for Networks</a>. The different is the training data. In the NLP, the training data from M-gram, the traditional method. We first aggregate the adjacency word pairs(actually is the word pair which distance less than a hyper-parameter), and make sure the distance of represented vector of word pair is also close. In the graph, training data is the node pair which is in the neighborhood. But the neighborhood sample is more complex than NLP. The <em>DeepWalk</em> use sampling just merge <em>DFS</em> and <em>BFS</em>. <em>Node2vec</em> just improves the sampling.</p>
+</li>
+<li><p><img src="/images/DeepWalk.jpg" alt="DeepWalk"></p>
+</li>
+<li><p><img src="/images/Node2vec.jpeg" alt="Node2vec"></p>
+</li>
+<li><p>the mathematical meaning of <em>node2vec</em> and <em>DeepWalk</em>. I have make a very simple explain before, and there is a paper(<a href="https://www.ijcai.org/Proceedings/15/Papers/299.pdf" target="_blank" rel="noopener">Network Representation Learning with Rich Text Information</a>) proof that <em>DeepWalk</em> is actually equivalent to <em>matrix factorization</em>. Let’s Image there is a <em>n x n</em> matrix _M_ correspond to a graph with _n_ nodes. If the value of <em>M(i,j)</em> is not zero, this indicate there is a path between node _i_ and node _j_ and the min length of the path is less than hyper-parameter _d_, which is just the depth of our <em>BNF</em> or <em>DNF</em>. If the <em>d = 1</em>, then the _M_ is our adjacency matrix. Then, this paper prove that <em>DeepWalk</em> just factorize this matrix, from <em>n x n</em> to <em>n x d</em>.</p>
+</li>
+<li><p><img src="/images/matrix-factorization.jpg" alt="matrix-factorization"></p>
+</li>
+</ul>
+<h5 id="Graph-Convolutional-Networks"><a href="#Graph-Convolutional-Networks" class="headerlink" title="Graph Convolutional Networks"></a>Graph Convolutional Networks</h5><ul>
+<li><p>If we have a graph structured signals(a sequence of value), how can we find the hidden properties of these signals? Of cause, the signal of nodes are very important, but the node relationship is also meaningful. In the traditional ML field, we handle this kind of problem by CNN, because convolution could <em>extract</em> hidden pattern of data in the <em>neighborhood</em>. But how could we do convolutional on a graph?</p>
+</li>
+<li><p>In the traditional convolution, we have a convolution <em>kernel</em>, which decide which information we should aggregate. These <em>kernels</em> are predefined, because for the matrix convolution, every <em>node</em> has 8 node surround it. However, the convolution kernels of graph should comes from the graph structure itself: if a node is 1-step nearby to you, you should aggregate the information of it, is a node is far from you, the correspond value of convolution kernel you multiply should be zero.</p>
+</li>
+<li><p>The basic method to generate the kernel is <em>Graph Fourier Transform</em> which converts a adjacency matrix to a <em>kernel</em>. If adjacency matrix is a positive symmetry matrix which could represented by the product between eigen-diag matrix and eigenvector. Then, the eigenvalues indicate the component of vector, in another word, if this node is close to one eigenvector. Then, this positive symmetry matrix is the <em>kernel</em> we want(more details in <a href="https://arxiv.org/pdf/1606.09375.pdf" target="_blank" rel="noopener">Convolutional Neural Networks on Graphs<br>with Fast Localized Spectral Filtering</a>). <a href="https://arxiv.org/pdf/1609.02907.pdf" target="_blank" rel="noopener">SEMI-SUPERVISED CLASSIFICATION WITH<br>GRAPH CONVOLUTIONAL NETWORKS</a> introduces a simple and reasonable way to calculate the <em>kernel</em> from adjacency matrix. As we know, the <em>ReLU</em> part is the “encoder”, and <em>softmax</em> is the decoder.</p>
+</li>
+<li><p>This paper also use a <em>semi-supervised method</em> to train the NN. Not all the node has a label(such as, this node belongs to class A). Then, the error function only calculate the error of labeled node. As the whole nodes shared the same weight matrix, we could also get the correct result.</p>
+</li>
+</ul>
+<h5 id="What-GraphSAGE-Do"><a href="#What-GraphSAGE-Do" class="headerlink" title="What GraphSAGE Do?"></a>What <em>GraphSAGE</em> Do?</h5><ul>
+<li><p><strong>Shortage of old work</strong>:</p>
+<ul>
+<li>Focused on embedding nodes from a single fixed graph, but many real-world applications require embedding to be quickly generated for unseen nodes, or entirely new (sub)graphs. Both <em>Matrix Factorization</em> and <em>Graph Convolutional Networks</em> need an fix abstract of adjacency matrix.</li>
+<li>The weight matrices are not relevant between nodes in <em>Matrix Factorization</em>.</li>
+<li><em>Graph-Based Neural Network</em> could not be used in large scale data. Because this approach requires to learn node degree-specific weight matrices which does not scale to large graphs with wide node degree distributions.</li>
+<li><em>Graph Convolutional Networks</em> is transductive node classification and do not naturally generalize to unseen nodes.</li>
+</ul>
+</li>
+<li><p>If we cannot determine the graph structure because the structure is active, so we should drop the idea of <em>matrix factor</em> or <em>convolution kernel</em>. We could back to <em>DeepWalk</em>, just sample the neighborhood by iterate the graph. But there is a disadvantage of <em>DeepWalk</em>: the degree of graph is diverse. For the <em>DFS</em>, the node has large degree would generate more training data than others. This generates a kind of bias. To reduce this bias, we set a <em>specified degree</em> as a hyperparameter to restrict every degree of node to be the same.</p>
+</li>
+<li><p><img src="/images/GraphSAGE-algo.jpg" alt="GraphSAGE-algo"></p>
+</li>
+<li><p><img src="/images/forward-of-graphSAGE.jpg" alt="forward-of-graphSAGE"></p>
+</li>
+<li><p>Unlike <em>GCN</em>, the <em>GraphSAGE</em> is full unsupervised. <em>GraphSAGE</em> aggregate the information of neighbor node, and every node shared the same weight matrix. <em>GraphSAGE</em> trusts that the information of nodes nearby is also the similar. So, after forward of NN, the result we got is the low-dimension matrix. And we have to guarantee that each vector of node is close to its neighborhood.</p>
+</li>
+<li><p><img src="/images/error-function-graphSAGE.jpg" alt="error-function-graphSAGE"></p>
+</li>
+<li><p><strong>Aggregator</strong>. compare with <em>Graph Convolutional Networks</em>. If the aggregator is the <em>mean aggregator</em>, and the <em>GraphGAGE</em> not to distinguish old aggregation result and new information(the concatenation operation), they are same. Another reasonable aggregator is <em>max pooling</em>(also the final choosing of the author), because it is both symmetric and trainable. Each neighbor’s vector is independently fed through a fully-connected neural network and then pooling. Then the model effectively captures different aspects of the neighborhood set.</p>
+</li>
+<li><p><strong>Minibatch</strong>. <em>GraphSAGE</em> also uses the minibatch method. For the set of all nodes in the graph, we can find a subset of node: if we get start from the nodes of subset, we can go to every nodes in the graph in only one step. When we iterate this procedures, then we can get set list with size _d_, which _d_ is the max step we need to walk. Then, the difference set of one set of set list and its successor is the <em>batch of nodes</em> we want.</p>
+</li>
+<li><p><img src="/images/minibatch-of-graphSAGE.jpg" alt="minibatch-of-graphSAGE"></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/07/node-classification/" data-id="cjlvn69p4000i2imc4599r6xd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sdh/">sdh</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-talk-with-Prof-Suresh-2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/04/talk-with-Prof-Suresh-2/" class="article-date">
@@ -202,30 +303,30 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="19-Tokenization"><a href="#19-Tokenization" class="headerlink" title="19: Tokenization"></a><em>19:</em> Tokenization</h4><ul>
-<li>Simple, no AI. There is a <a href="https://spacy.io/usage/linguistic-features#how-tokenizer-works" target="_blank" rel="noopener">algorithm pseudo code</a> in spaCy website.</li>
-<li>Basic operation and parallelization.<ul>
-<li>splite and merge: splite the text by space, handle each part text, then merge. Could be parallelize.</li>
-<li>search in database: to find if there is some specail cases match the text.</li>
-<li>while lopp and logical judgment.</li>
+<li>Simple, no AI. There is an <a href="https://spacy.io/usage/linguistic-features#how-tokenizer-works" target="_blank" rel="noopener">algorithm pseudo code</a> on spaCy website.</li>
+<li>Basic procedure and paralleling.<ul>
+<li>split and merge: split the text by spaces, handle each part of the text and merge. Could be done in parallel.</li>
+<li>search in database: find if there are some special cases that match the text.</li>
+<li>while loop and logical judgment.</li>
 </ul>
 </li>
 </ul>
 <h4 id="22-Named-Entity-Recognition"><a href="#22-Named-Entity-Recognition" class="headerlink" title="22: Named Entity Recognition"></a><em>22:</em> Named Entity Recognition</h4><ul>
-<li>AI algorithm. There is an <a href="https://github.com/explosion/spaCy/issues/2107" target="_blank" rel="noopener">issue</a> in the github that someone whated to konw the detail paper about spaCy <em>NER</em>(Entity Recognition). Honnibal, the author of spaCy NLP lib, said: <em>There’s no paper published, as the algorithm wasn’t designed for an academic contribution, and details are subject to change. The overall approach is quite similar to the paper by Strubell et al (2017): <a href="https://arxiv.org/abs/1702.02098" target="_blank" rel="noopener">https://arxiv.org/abs/1702.02098</a> . The main differences are that we use a different embedding method, a transition-based framework to facilitate imitation learning, and the convolutional layers use residual connections instead of dilation.</em></li>
-<li>this paper, <a href="https://arxiv.org/pdf/1702.02098.pdf" target="_blank" rel="noopener">Fast and Accurate Entity Recognition with Iterated Dilated Convolutions</a>, use the iterated dilated CNN(spaCy said them use ResNet for instead).<ul>
-<li>Use RNN instead of CNN(LSTMs) for RNN could use GPU to accelerate.</li>
+<li>AI algorithm. There is an <a href="https://github.com/explosion/spaCy/issues/2107" target="_blank" rel="noopener">issue</a> in the GitHub repo that someone wanted to know the details about the paper of spaCy <em>NER</em>(Entity Recognition). Honnibal, the author of spaCy NLP lib, said:<br><em>There’s no paper published, as the algorithm wasn’t designed for an academic contribution, and details are subject to change. The overall approach is quite similar to the paper by Strubell et al (2017): <a href="https://arxiv.org/abs/1702.02098" target="_blank" rel="noopener">https://arxiv.org/abs/1702.02098</a> . The main differences are that we use a different embedding method, a transition-based framework to facilitate imitation learning, and the convolutional layers use residual connections instead of dilation.</em></li>
+<li>this paper, <a href="https://arxiv.org/pdf/1702.02098.pdf" target="_blank" rel="noopener">Fast and Accurate Entity Recognition with Iterated Dilated Convolutions</a>, uses the iterated dilated CNN(authors of spaCy said they use ResNet instead).<ul>
+<li>Use RNN instead of CNN(LSTMs), because RNN could use GPUs to accelerate.</li>
 <li>Use fixed depth convolutions.</li>
-<li>14-20x speedups than Bi-LSTM-CRF.</li>
-<li>spaCy use ResNet <a href="https://arxiv.org/pdf/1512.03385.pdf" target="_blank" rel="noopener">Deep Residual Learning for Image Recognition</a>, <a href="https://arxiv.org/pdf/1603.05027.pdf" target="_blank" rel="noopener">Identity Mappings in Deep Residual Networks</a>.</li>
+<li>14-20x speedups over Bi-LSTM-CRF.</li>
+<li>spaCy uses ResNet <a href="https://arxiv.org/pdf/1512.03385.pdf" target="_blank" rel="noopener">Deep Residual Learning for Image Recognition</a>, <a href="https://arxiv.org/pdf/1603.05027.pdf" target="_blank" rel="noopener">Identity Mappings in Deep Residual Networks</a>.</li>
 </ul>
 </li>
 </ul>
 <h4 id="46-Node-Classification"><a href="#46-Node-Classification" class="headerlink" title="46: Node Classification"></a><em>46:</em> Node Classification</h4><ul>
 <li><a href="https://arxiv.org/pdf/1706.02216.pdf" target="_blank" rel="noopener">Inductive Representation Learning on Large Graphs</a>.<ul>
-<li>Problem: node embeddings in dynamic graph, ml need a seqeunce of data: distill the high-dimensional information about a node’s graph neighborhood into a dense vector embedding.</li>
-<li>previous works:  focused on embedding nodes from a single fixed graph, and many real-world applications require embeddings to be quickly generated for unseen nodes, or entirely new (sub)graphs. the weight matrices are not relevant between nodes.</li>
-<li>contribution: simple neighborhood, aggreagate feature information from neighbos.<ul>
-<li>first construct a graph of neighborhood with fix num _n_ (if neighbors numer greater than <em>max degree</em>, random drop some. if neighbors numer less than <em>max degree</em>, random reuse some).</li>
+<li>Problem: node embedding in dynamic graph because ml needs a sequence of data. Additionally, the high-dimensional information about a node’s graph neighborhood is distilled into a dense vector embedding.</li>
+<li>previous works:  focused on embedding nodes from a single fixed graph, but many real-world applications require embedding to be quickly generated for unseen nodes, or entirely new (sub)graphs. The weight matrices are not relevant between nodes.</li>
+<li>contribution: simple neighborhood, aggregate feature information from neighbors.<ul>
+<li>first construct a graph of the neighborhood with fixed num _n_ (if the number of the neighbors is greater than <em>a specified degree</em>, randomly drop some. if the number of the neighbors is less than <em>a specified degree</em>, randomly reuse some).</li>
 <li><img src="/images/GraphSAGE-algo.jpg" alt="GraphSAGE-algo"></li>
 <li>embedding generation. for depth k:<ul>
 <li>for each node v:<ul>
@@ -238,28 +339,28 @@
 </li>
 </ul>
 </li>
-<li>update: the author just change their words in <a href="https://github.com/williamleif/GraphSAGE/issues/13" target="_blank" rel="noopener">issue: Number nodes at each layers</a>. The code is correct.<ul>
+<li>update: the author just changed their words in <a href="https://github.com/williamleif/GraphSAGE/issues/13" target="_blank" rel="noopener">issue: Number nodes at each layers</a>. The code is correct.<ul>
 <li>sample a “center” node, n0</li>
 <li>sample 10 1-hop neighbors, n1</li>
-<li>ample 25 1-hop neighbors of each n1, yielding 250 2-hop neighbors of n0</li>
+<li>sample 25 1-hop neighbors of each n1, yielding 250 2-hop neighbors of n0</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <h4 id="26-Recommender-System"><a href="#26-Recommender-System" class="headerlink" title="26: Recommender System"></a><em>26:</em> Recommender System</h4><ul>
-<li><a href="https://github.com/amzn/amazon-dsstne" target="_blank" rel="noopener">mazon DSSTNE: Deep Scalable Sparse Tensor Network Engine</a><ul>
+<li><a href="https://github.com/amzn/amazon-dsstne" target="_blank" rel="noopener">Amazon DSSTNE: Deep Salable Sparse Tensor Network Engine</a><ul>
 <li>Multi-GPU Scale: Training and prediction both scale out to use multiple GPUs, spreading out computation and storage in a model-parallel fashion for each layer.</li>
 <li>Large Layers: Model-parallel scaling enables larger networks than are possible with a single GPU.</li>
 <li>Sparse Data: DSSTNE is optimized for fast performance on sparse datasets, common in recommendation problems. Custom GPU kernels perform sparse computation on the GPU, without filling in lots of zeroes.</li>
 </ul>
 </li>
-<li>About Recommender System itself, like a 4 layer fullyconnnected NN from <a href="https://gitlab.sdh.cloud/sdh-workflows/amazon-dsstne/blob/master/_sdh/model.json" target="_blank" rel="noopener">DSSTNE model config file</a>.</li>
-<li>As the materails I found, it basicly is a <strong>Matrix completion problem:</strong> give a part of matrix, fill the rest. The recommender system example is <em>Netflix</em>: Netflix challenge offered in 2009 and carrying a 1M$ prize for the algorithm that can best predict user ratings for movies based on previous ratings. The size of the Netflix matrix is 480K movies and 18K users (8.5B elements), with only 0.011% known entries. There are some ml approach: <a href="https://arxiv.org/pdf/1704.06803.pdf" target="_blank" rel="noopener">Geometric Matrix Completion with Recurrent Multi-Graph Neural Networks</a>.</li>
+<li>I think the Recommender System is a 4 layer fullyconnnected NN from <a href="https://gitlab.sdh.cloud/sdh-workflows/amazon-dsstne/blob/master/_sdh/model.json" target="_blank" rel="noopener">DSSTNE model config file</a>.</li>
+<li>As the materials I found, it basically is a <strong>Matrix completion problem:</strong> given a part of matrix, fill the rest. A Recommender system example is <em>Netflix</em>: In 2009, the Netflix challenge offered a 1M$ prize for the algorithm that can best predict user ratings for movies based on previous ratings. The size of the Netflix matrix is 480K movies and 18K users (8.5B elements), with only 0.011% known entries. There are some ml approaches: <a href="https://arxiv.org/pdf/1704.06803.pdf" target="_blank" rel="noopener">Geometric Matrix Completion with Recurrent Multi-Graph Neural Networks</a>.</li>
 </ul>
 <h4 id="68-Changepoint-Detection"><a href="#68-Changepoint-Detection" class="headerlink" title="68: Changepoint Detection"></a><em>68:</em> Changepoint Detection</h4><ul>
 <li><a href="https://arxiv.org/pdf/1209.1625.pdf" target="_blank" rel="noopener">Graph-Based Change-Point Detection</a>.<ul>
-<li>Morden Statisticl problem: every element of a sequences is a high dimensional vector or even a non-Euclidean data object(graph like data). Example: Network evolution(<em>change in network of social interactions among individuals</em>), Image analysis(<em>The detection of abrupt events, such as security breaches, storms, or brain activity</em>), Text or sequence analysis(writing style,  genomic sequence analysis in biology).</li>
+<li>Modern Statistical problem: every element of a sequence is a high-dimensional vector or even a non-Euclidean data object(graph like data). Example: Network evolution(<em>change in network of social interactions among individuals</em>), Image analysis(<em>The detection of abrupt events, such as security breaches, storms, or brain activity</em>), Text or sequence analysis(writing style,  genomics sequence analysis in biology).</li>
 </ul>
 </li>
 </ul>
@@ -461,7 +562,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ML-paper-reading/" style="font-size: 10px;">ML paper-reading</a> <a href="/tags/Prof-Suresh/" style="font-size: 10px;">Prof.Suresh</a> <a href="/tags/sdh/" style="font-size: 10px;">sdh</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a>
+      <a href="/tags/ML-paper-reading/" style="font-size: 10px;">ML paper-reading</a> <a href="/tags/Prof-Suresh/" style="font-size: 10px;">Prof.Suresh</a> <a href="/tags/sdh/" style="font-size: 20px;">sdh</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a>
     </div>
   </div>
 
@@ -483,6 +584,10 @@
       <ul>
         
           <li>
+            <a href="/2018/09/07/node-classification/">node classification, intro</a>
+          </li>
+        
+          <li>
             <a href="/2018/09/04/talk-with-Prof-Suresh-2/">talk-with-Prof.Suresh-2</a>
           </li>
         
@@ -496,10 +601,6 @@
         
           <li>
             <a href="/2018/08/31/reading-group-xy/">reading_group_xy</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/31/2/">Meeting in Aug 31, 2018</a>
           </li>
         
       </ul>

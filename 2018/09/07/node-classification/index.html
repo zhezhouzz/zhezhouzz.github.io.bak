@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>node classification, intro | Zhou Zhe&#39;s Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Node Classification or Graph Embedding Inductive Representation Learning on Large Graphs.  Goals: Encode, Decode and Data Transformation Distance: In the classical algorithm, if we can define a “dista">
+<meta name="keywords" content="sdh">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node classification, intro">
+<meta property="og:url" content="http://yoursite.com/2018/09/07/node-classification/index.html">
+<meta property="og:site_name" content="Zhou Zhe&#39;s Home">
+<meta property="og:description" content="Node Classification or Graph Embedding Inductive Representation Learning on Large Graphs.  Goals: Encode, Decode and Data Transformation Distance: In the classical algorithm, if we can define a “dista">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/embedding.jpeg">
+<meta property="og:image" content="http://yoursite.com/images/DeepWalk.jpg">
+<meta property="og:image" content="http://yoursite.com/images/Node2vec.jpeg">
+<meta property="og:image" content="http://yoursite.com/images/matrix-factorization.jpg">
+<meta property="og:image" content="http://yoursite.com/images/GraphSAGE-algo.jpg">
+<meta property="og:image" content="http://yoursite.com/images/forward-of-graphSAGE.jpg">
+<meta property="og:image" content="http://yoursite.com/images/error-function-graphSAGE.jpg">
+<meta property="og:image" content="http://yoursite.com/images/minibatch-of-graphSAGE.jpg">
+<meta property="og:updated_time" content="2018-09-11T19:26:54.737Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node classification, intro">
+<meta name="twitter:description" content="Node Classification or Graph Embedding Inductive Representation Learning on Large Graphs.  Goals: Encode, Decode and Data Transformation Distance: In the classical algorithm, if we can define a “dista">
+<meta name="twitter:image" content="http://yoursite.com/images/embedding.jpeg">
+  
+    <link rel="alternate" href="/atom.xml" title="Zhou Zhe&#39;s Home" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Zhou Zhe&#39;s Home</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-node-classification" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/07/node-classification/" class="article-date">
+  <time datetime="2018-09-07T16:22:41.000Z" itemprop="datePublished">2018-09-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      node classification, intro
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="Node-Classification-or-Graph-Embedding"><a href="#Node-Classification-or-Graph-Embedding" class="headerlink" title="Node Classification or Graph Embedding"></a>Node Classification or Graph Embedding</h4><ul>
+<li><a href="https://arxiv.org/pdf/1706.02216.pdf" target="_blank" rel="noopener">Inductive Representation Learning on Large Graphs</a>.</li>
+</ul>
+<h5 id="Goals-Encode-Decode-and-Data-Transformation"><a href="#Goals-Encode-Decode-and-Data-Transformation" class="headerlink" title="Goals: Encode, Decode and Data Transformation"></a>Goals: Encode, Decode and Data Transformation</h5><ul>
+<li><p><strong>Distance</strong>: In the classical algorithm, if we can define a “distance” of two object, then we can classify them(such as K-means or others). For two high-dimensional vectors, the calculation of distance is easy, we have Euclidean distance or others. However, when the given data is a non-Euclidean data, especially a graph, we can not easily calculate the distance of two nodes. A reasonable definition of distance could be the length of a shortest route between two nodes. However, the complexity of calculating the shortest path between every two nodes is expensive. The traditional classification algorithm could not handle the non-Euclidean data.</p>
+</li>
+<li><p><strong>Embedding</strong>: In the view of math, a topology graph is a abstraction from a high-dimensional angle whose vertex is the origin of the coordinate(a graph with n node equal to a n-dimension object, which every node is located in one axis). To know this relation between the node of this angle, we do not need the information of the whole object. If we just project this object to a plane, we could also get the right distance. Converting a graph(is a high-dimensional object essentially) to a matrix(or a low-dimension vector) is called <em>Embedding</em>. Actually, the adjacency matrix is a method of embedding(because it loses a lot of information and the adjacency matrix itself is also complex).</p>
+</li>
+<li><p><img src="/images/embedding.jpeg" alt="embedding"></p>
+</li>
+<li><p><strong>Encode, Decode</strong>: The procedure for converting a graph to a matrix is called <em>encode</em>. We can also recover the graph by the encoded matrix, which is called <em>decode</em>. Then we can define a loss rate between the origin graph and “recovered graph”. If we use the <em>gradient descent</em> method to adjust the weight matrix to find the extremum of loss function, then we can find a reasonable encoder(because we would get a decode function, too. But it is useless at most of time).</p>
+</li>
+</ul>
+<h5 id="From-NLP-to-Node-Analysis-Matrix-Factorization"><a href="#From-NLP-to-Node-Analysis-Matrix-Factorization" class="headerlink" title="From NLP to Node Analysis, Matrix Factorization"></a>From NLP to Node Analysis, Matrix Factorization</h5><ul>
+<li><p>At first, the <em>Embedding</em> is used in NLP, which is called <em>word2vec</em>: <a href="https://arxiv.org/pdf/1301.3781.pdf" target="_blank" rel="noopener">Efficient Estimation of Word Representations in Vector Space</a>. Word2vec use a <em>Skip-gram Model</em> which is a NN that has three layers: input, hidden and output. The input to hidden is the encoder, the hidden to output is the decoder. The forward of this NN is “encode + decode”, thus when we are training this NN, the encode is more and more reliable. After training, we extract the hidden layer, it is the resulting low-dimension matrix we want.</p>
+</li>
+<li><p>Then, this approach are used in the graph data which is called <em>DeepWalk</em>: <a href="http://www.perozzi.net/publications/14_kdd_deepwalk.pdf" target="_blank" rel="noopener">DeepWalk: Online Learning of Social Representations</a>, <em>node2vec</em>: <a href="https://cs.stanford.edu/people/jure/pubs/node2vec-kdd16.pdf" target="_blank" rel="noopener">node2vec: Salable Feature Learning for Networks</a>. The different is the training data. In the NLP, the training data from M-gram, the traditional method. We first aggregate the adjacency word pairs(actually is the word pair which distance less than a hyper-parameter), and make sure the distance of represented vector of word pair is also close. In the graph, training data is the node pair which is in the neighborhood. But the neighborhood sample is more complex than NLP. The <em>DeepWalk</em> use sampling just merge <em>DFS</em> and <em>BFS</em>. <em>Node2vec</em> just improves the sampling.</p>
+</li>
+<li><p><img src="/images/DeepWalk.jpg" alt="DeepWalk"></p>
+</li>
+<li><p><img src="/images/Node2vec.jpeg" alt="Node2vec"></p>
+</li>
+<li><p>the mathematical meaning of <em>node2vec</em> and <em>DeepWalk</em>. I have make a very simple explain before, and there is a paper(<a href="https://www.ijcai.org/Proceedings/15/Papers/299.pdf" target="_blank" rel="noopener">Network Representation Learning with Rich Text Information</a>) proof that <em>DeepWalk</em> is actually equivalent to <em>matrix factorization</em>. Let’s Image there is a <em>n x n</em> matrix _M_ correspond to a graph with _n_ nodes. If the value of <em>M(i,j)</em> is not zero, this indicate there is a path between node _i_ and node _j_ and the min length of the path is less than hyper-parameter _d_, which is just the depth of our <em>BNF</em> or <em>DNF</em>. If the <em>d = 1</em>, then the _M_ is our adjacency matrix. Then, this paper prove that <em>DeepWalk</em> just factorize this matrix, from <em>n x n</em> to <em>n x d</em>.</p>
+</li>
+<li><p><img src="/images/matrix-factorization.jpg" alt="matrix-factorization"></p>
+</li>
+</ul>
+<h5 id="Graph-Convolutional-Networks"><a href="#Graph-Convolutional-Networks" class="headerlink" title="Graph Convolutional Networks"></a>Graph Convolutional Networks</h5><ul>
+<li><p>If we have a graph structured signals(a sequence of value), how can we find the hidden properties of these signals? Of cause, the signal of nodes are very important, but the node relationship is also meaningful. In the traditional ML field, we handle this kind of problem by CNN, because convolution could <em>extract</em> hidden pattern of data in the <em>neighborhood</em>. But how could we do convolutional on a graph?</p>
+</li>
+<li><p>In the traditional convolution, we have a convolution <em>kernel</em>, which decide which information we should aggregate. These <em>kernels</em> are predefined, because for the matrix convolution, every <em>node</em> has 8 node surround it. However, the convolution kernels of graph should comes from the graph structure itself: if a node is 1-step nearby to you, you should aggregate the information of it, is a node is far from you, the correspond value of convolution kernel you multiply should be zero.</p>
+</li>
+<li><p>The basic method to generate the kernel is <em>Graph Fourier Transform</em> which converts a adjacency matrix to a <em>kernel</em>. If adjacency matrix is a positive symmetry matrix which could represented by the product between eigen-diag matrix and eigenvector. Then, the eigenvalues indicate the component of vector, in another word, if this node is close to one eigenvector. Then, this positive symmetry matrix is the <em>kernel</em> we want(more details in <a href="https://arxiv.org/pdf/1606.09375.pdf" target="_blank" rel="noopener">Convolutional Neural Networks on Graphs<br>with Fast Localized Spectral Filtering</a>). <a href="https://arxiv.org/pdf/1609.02907.pdf" target="_blank" rel="noopener">SEMI-SUPERVISED CLASSIFICATION WITH<br>GRAPH CONVOLUTIONAL NETWORKS</a> introduces a simple and reasonable way to calculate the <em>kernel</em> from adjacency matrix. As we know, the <em>ReLU</em> part is the “encoder”, and <em>softmax</em> is the decoder.</p>
+</li>
+<li><p>This paper also use a <em>semi-supervised method</em> to train the NN. Not all the node has a label(such as, this node belongs to class A). Then, the error function only calculate the error of labeled node. As the whole nodes shared the same weight matrix, we could also get the correct result.</p>
+</li>
+</ul>
+<h5 id="What-GraphSAGE-Do"><a href="#What-GraphSAGE-Do" class="headerlink" title="What GraphSAGE Do?"></a>What <em>GraphSAGE</em> Do?</h5><ul>
+<li><p><strong>Shortage of old work</strong>:</p>
+<ul>
+<li>Focused on embedding nodes from a single fixed graph, but many real-world applications require embedding to be quickly generated for unseen nodes, or entirely new (sub)graphs. Both <em>Matrix Factorization</em> and <em>Graph Convolutional Networks</em> need an fix abstract of adjacency matrix.</li>
+<li>The weight matrices are not relevant between nodes in <em>Matrix Factorization</em>.</li>
+<li><em>Graph-Based Neural Network</em> could not be used in large scale data. Because this approach requires to learn node degree-specific weight matrices which does not scale to large graphs with wide node degree distributions.</li>
+<li><em>Graph Convolutional Networks</em> is transductive node classification and do not naturally generalize to unseen nodes.</li>
+</ul>
+</li>
+<li><p>If we cannot determine the graph structure because the structure is active, so we should drop the idea of <em>matrix factor</em> or <em>convolution kernel</em>. We could back to <em>DeepWalk</em>, just sample the neighborhood by iterate the graph. But there is a disadvantage of <em>DeepWalk</em>: the degree of graph is diverse. For the <em>DFS</em>, the node has large degree would generate more training data than others. This generates a kind of bias. To reduce this bias, we set a <em>specified degree</em> as a hyperparameter to restrict every degree of node to be the same.</p>
+</li>
+<li><p><img src="/images/GraphSAGE-algo.jpg" alt="GraphSAGE-algo"></p>
+</li>
+<li><p><img src="/images/forward-of-graphSAGE.jpg" alt="forward-of-graphSAGE"></p>
+</li>
+<li><p>Unlike <em>GCN</em>, the <em>GraphSAGE</em> is full unsupervised. <em>GraphSAGE</em> aggregate the information of neighbor node, and every node shared the same weight matrix. <em>GraphSAGE</em> trusts that the information of nodes nearby is also the similar. So, after forward of NN, the result we got is the low-dimension matrix. And we have to guarantee that each vector of node is close to its neighborhood.</p>
+</li>
+<li><p><img src="/images/error-function-graphSAGE.jpg" alt="error-function-graphSAGE"></p>
+</li>
+<li><p><strong>Aggregator</strong>. compare with <em>Graph Convolutional Networks</em>. If the aggregator is the <em>mean aggregator</em>, and the <em>GraphGAGE</em> not to distinguish old aggregation result and new information(the concatenation operation), they are same. Another reasonable aggregator is <em>max pooling</em>(also the final choosing of the author), because it is both symmetric and trainable. Each neighbor’s vector is independently fed through a fully-connected neural network and then pooling. Then the model effectively captures different aspects of the neighborhood set.</p>
+</li>
+<li><p><strong>Minibatch</strong>. <em>GraphSAGE</em> also uses the minibatch method. For the set of all nodes in the graph, we can find a subset of node: if we get start from the nodes of subset, we can go to every nodes in the graph in only one step. When we iterate this procedures, then we can get set list with size _d_, which _d_ is the max step we need to walk. Then, the difference set of one set of set list and its successor is the <em>batch of nodes</em> we want.</p>
+</li>
+<li><p><img src="/images/minibatch-of-graphSAGE.jpg" alt="minibatch-of-graphSAGE"></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/07/node-classification/" data-id="cjlvn69p4000i2imc4599r6xd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sdh/">sdh</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/09/04/talk-with-Prof-Suresh-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">talk-with-Prof.Suresh-2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-paper-reading/">ML paper-reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Prof-Suresh/">Prof.Suresh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdh/">sdh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/summary/">summary</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/ML-paper-reading/" style="font-size: 10px;">ML paper-reading</a> <a href="/tags/Prof-Suresh/" style="font-size: 10px;">Prof.Suresh</a> <a href="/tags/sdh/" style="font-size: 20px;">sdh</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/09/07/node-classification/">node classification, intro</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/04/talk-with-Prof-Suresh-2/">talk-with-Prof.Suresh-2</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/04/non-euclidean-data/">non-euclidean-data</a>
+          </li>
+        
+          <li>
+            <a href="/2018/09/03/sdh-workflow-investigation/">sdh-workflow-investigation</a>
+          </li>
+        
+          <li>
+            <a href="/2018/08/31/reading-group-xy/">reading_group_xy</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Zhou Zhe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

@@ -7,19 +7,19 @@
   
   <title>sdh-workflow-investigation | Zhou Zhe&#39;s Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="19: Tokenization Simple, no AI. There is a algorithm pseudo code in spaCy website. Basic operation and parallelization. splite and merge: splite the text by space, handle each part text, then merge. C">
+  <meta name="description" content="19: Tokenization Simple, no AI. There is an algorithm pseudo code on spaCy website. Basic procedure and paralleling. split and merge: split the text by spaces, handle each part of the text and merge.">
 <meta name="keywords" content="sdh">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sdh-workflow-investigation">
 <meta property="og:url" content="http://yoursite.com/2018/09/03/sdh-workflow-investigation/index.html">
 <meta property="og:site_name" content="Zhou Zhe&#39;s Home">
-<meta property="og:description" content="19: Tokenization Simple, no AI. There is a algorithm pseudo code in spaCy website. Basic operation and parallelization. splite and merge: splite the text by space, handle each part text, then merge. C">
+<meta property="og:description" content="19: Tokenization Simple, no AI. There is an algorithm pseudo code on spaCy website. Basic procedure and paralleling. split and merge: split the text by spaces, handle each part of the text and merge.">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/images/GraphSAGE-algo.jpg">
-<meta property="og:updated_time" content="2018-09-04T19:56:22.763Z">
+<meta property="og:updated_time" content="2018-09-10T22:22:33.517Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sdh-workflow-investigation">
-<meta name="twitter:description" content="19: Tokenization Simple, no AI. There is a algorithm pseudo code in spaCy website. Basic operation and parallelization. splite and merge: splite the text by space, handle each part text, then merge. C">
+<meta name="twitter:description" content="19: Tokenization Simple, no AI. There is an algorithm pseudo code on spaCy website. Basic procedure and paralleling. split and merge: split the text by spaces, handle each part of the text and merge.">
 <meta name="twitter:image" content="http://yoursite.com/images/GraphSAGE-algo.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Zhou Zhe&#39;s Home" type="application/atom+xml">
@@ -90,30 +90,30 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="19-Tokenization"><a href="#19-Tokenization" class="headerlink" title="19: Tokenization"></a><em>19:</em> Tokenization</h4><ul>
-<li>Simple, no AI. There is a <a href="https://spacy.io/usage/linguistic-features#how-tokenizer-works" target="_blank" rel="noopener">algorithm pseudo code</a> in spaCy website.</li>
-<li>Basic operation and parallelization.<ul>
-<li>splite and merge: splite the text by space, handle each part text, then merge. Could be parallelize.</li>
-<li>search in database: to find if there is some specail cases match the text.</li>
-<li>while lopp and logical judgment.</li>
+<li>Simple, no AI. There is an <a href="https://spacy.io/usage/linguistic-features#how-tokenizer-works" target="_blank" rel="noopener">algorithm pseudo code</a> on spaCy website.</li>
+<li>Basic procedure and paralleling.<ul>
+<li>split and merge: split the text by spaces, handle each part of the text and merge. Could be done in parallel.</li>
+<li>search in database: find if there are some special cases that match the text.</li>
+<li>while loop and logical judgment.</li>
 </ul>
 </li>
 </ul>
 <h4 id="22-Named-Entity-Recognition"><a href="#22-Named-Entity-Recognition" class="headerlink" title="22: Named Entity Recognition"></a><em>22:</em> Named Entity Recognition</h4><ul>
-<li>AI algorithm. There is an <a href="https://github.com/explosion/spaCy/issues/2107" target="_blank" rel="noopener">issue</a> in the github that someone whated to konw the detail paper about spaCy <em>NER</em>(Entity Recognition). Honnibal, the author of spaCy NLP lib, said: <em>There’s no paper published, as the algorithm wasn’t designed for an academic contribution, and details are subject to change. The overall approach is quite similar to the paper by Strubell et al (2017): <a href="https://arxiv.org/abs/1702.02098" target="_blank" rel="noopener">https://arxiv.org/abs/1702.02098</a> . The main differences are that we use a different embedding method, a transition-based framework to facilitate imitation learning, and the convolutional layers use residual connections instead of dilation.</em></li>
-<li>this paper, <a href="https://arxiv.org/pdf/1702.02098.pdf" target="_blank" rel="noopener">Fast and Accurate Entity Recognition with Iterated Dilated Convolutions</a>, use the iterated dilated CNN(spaCy said them use ResNet for instead).<ul>
-<li>Use RNN instead of CNN(LSTMs) for RNN could use GPU to accelerate.</li>
+<li>AI algorithm. There is an <a href="https://github.com/explosion/spaCy/issues/2107" target="_blank" rel="noopener">issue</a> in the GitHub repo that someone wanted to know the details about the paper of spaCy <em>NER</em>(Entity Recognition). Honnibal, the author of spaCy NLP lib, said:<br><em>There’s no paper published, as the algorithm wasn’t designed for an academic contribution, and details are subject to change. The overall approach is quite similar to the paper by Strubell et al (2017): <a href="https://arxiv.org/abs/1702.02098" target="_blank" rel="noopener">https://arxiv.org/abs/1702.02098</a> . The main differences are that we use a different embedding method, a transition-based framework to facilitate imitation learning, and the convolutional layers use residual connections instead of dilation.</em></li>
+<li>this paper, <a href="https://arxiv.org/pdf/1702.02098.pdf" target="_blank" rel="noopener">Fast and Accurate Entity Recognition with Iterated Dilated Convolutions</a>, uses the iterated dilated CNN(authors of spaCy said they use ResNet instead).<ul>
+<li>Use RNN instead of CNN(LSTMs), because RNN could use GPUs to accelerate.</li>
 <li>Use fixed depth convolutions.</li>
-<li>14-20x speedups than Bi-LSTM-CRF.</li>
-<li>spaCy use ResNet <a href="https://arxiv.org/pdf/1512.03385.pdf" target="_blank" rel="noopener">Deep Residual Learning for Image Recognition</a>, <a href="https://arxiv.org/pdf/1603.05027.pdf" target="_blank" rel="noopener">Identity Mappings in Deep Residual Networks</a>.</li>
+<li>14-20x speedups over Bi-LSTM-CRF.</li>
+<li>spaCy uses ResNet <a href="https://arxiv.org/pdf/1512.03385.pdf" target="_blank" rel="noopener">Deep Residual Learning for Image Recognition</a>, <a href="https://arxiv.org/pdf/1603.05027.pdf" target="_blank" rel="noopener">Identity Mappings in Deep Residual Networks</a>.</li>
 </ul>
 </li>
 </ul>
 <h4 id="46-Node-Classification"><a href="#46-Node-Classification" class="headerlink" title="46: Node Classification"></a><em>46:</em> Node Classification</h4><ul>
 <li><a href="https://arxiv.org/pdf/1706.02216.pdf" target="_blank" rel="noopener">Inductive Representation Learning on Large Graphs</a>.<ul>
-<li>Problem: node embeddings in dynamic graph, ml need a seqeunce of data: distill the high-dimensional information about a node’s graph neighborhood into a dense vector embedding.</li>
-<li>previous works:  focused on embedding nodes from a single fixed graph, and many real-world applications require embeddings to be quickly generated for unseen nodes, or entirely new (sub)graphs. the weight matrices are not relevant between nodes.</li>
-<li>contribution: simple neighborhood, aggreagate feature information from neighbos.<ul>
-<li>first construct a graph of neighborhood with fix num _n_ (if neighbors numer greater than <em>max degree</em>, random drop some. if neighbors numer less than <em>max degree</em>, random reuse some).</li>
+<li>Problem: node embedding in dynamic graph because ml needs a sequence of data. Additionally, the high-dimensional information about a node’s graph neighborhood is distilled into a dense vector embedding.</li>
+<li>previous works:  focused on embedding nodes from a single fixed graph, but many real-world applications require embedding to be quickly generated for unseen nodes, or entirely new (sub)graphs. The weight matrices are not relevant between nodes.</li>
+<li>contribution: simple neighborhood, aggregate feature information from neighbors.<ul>
+<li>first construct a graph of the neighborhood with fixed num _n_ (if the number of the neighbors is greater than <em>a specified degree</em>, randomly drop some. if the number of the neighbors is less than <em>a specified degree</em>, randomly reuse some).</li>
 <li><img src="/images/GraphSAGE-algo.jpg" alt="GraphSAGE-algo"></li>
 <li>embedding generation. for depth k:<ul>
 <li>for each node v:<ul>
@@ -126,28 +126,28 @@
 </li>
 </ul>
 </li>
-<li>update: the author just change their words in <a href="https://github.com/williamleif/GraphSAGE/issues/13" target="_blank" rel="noopener">issue: Number nodes at each layers</a>. The code is correct.<ul>
+<li>update: the author just changed their words in <a href="https://github.com/williamleif/GraphSAGE/issues/13" target="_blank" rel="noopener">issue: Number nodes at each layers</a>. The code is correct.<ul>
 <li>sample a “center” node, n0</li>
 <li>sample 10 1-hop neighbors, n1</li>
-<li>ample 25 1-hop neighbors of each n1, yielding 250 2-hop neighbors of n0</li>
+<li>sample 25 1-hop neighbors of each n1, yielding 250 2-hop neighbors of n0</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <h4 id="26-Recommender-System"><a href="#26-Recommender-System" class="headerlink" title="26: Recommender System"></a><em>26:</em> Recommender System</h4><ul>
-<li><a href="https://github.com/amzn/amazon-dsstne" target="_blank" rel="noopener">mazon DSSTNE: Deep Scalable Sparse Tensor Network Engine</a><ul>
+<li><a href="https://github.com/amzn/amazon-dsstne" target="_blank" rel="noopener">Amazon DSSTNE: Deep Salable Sparse Tensor Network Engine</a><ul>
 <li>Multi-GPU Scale: Training and prediction both scale out to use multiple GPUs, spreading out computation and storage in a model-parallel fashion for each layer.</li>
 <li>Large Layers: Model-parallel scaling enables larger networks than are possible with a single GPU.</li>
 <li>Sparse Data: DSSTNE is optimized for fast performance on sparse datasets, common in recommendation problems. Custom GPU kernels perform sparse computation on the GPU, without filling in lots of zeroes.</li>
 </ul>
 </li>
-<li>About Recommender System itself, like a 4 layer fullyconnnected NN from <a href="https://gitlab.sdh.cloud/sdh-workflows/amazon-dsstne/blob/master/_sdh/model.json" target="_blank" rel="noopener">DSSTNE model config file</a>.</li>
-<li>As the materails I found, it basicly is a <strong>Matrix completion problem:</strong> give a part of matrix, fill the rest. The recommender system example is <em>Netflix</em>: Netflix challenge offered in 2009 and carrying a 1M$ prize for the algorithm that can best predict user ratings for movies based on previous ratings. The size of the Netflix matrix is 480K movies and 18K users (8.5B elements), with only 0.011% known entries. There are some ml approach: <a href="https://arxiv.org/pdf/1704.06803.pdf" target="_blank" rel="noopener">Geometric Matrix Completion with Recurrent Multi-Graph Neural Networks</a>.</li>
+<li>I think the Recommender System is a 4 layer fullyconnnected NN from <a href="https://gitlab.sdh.cloud/sdh-workflows/amazon-dsstne/blob/master/_sdh/model.json" target="_blank" rel="noopener">DSSTNE model config file</a>.</li>
+<li>As the materials I found, it basically is a <strong>Matrix completion problem:</strong> given a part of matrix, fill the rest. A Recommender system example is <em>Netflix</em>: In 2009, the Netflix challenge offered a 1M$ prize for the algorithm that can best predict user ratings for movies based on previous ratings. The size of the Netflix matrix is 480K movies and 18K users (8.5B elements), with only 0.011% known entries. There are some ml approaches: <a href="https://arxiv.org/pdf/1704.06803.pdf" target="_blank" rel="noopener">Geometric Matrix Completion with Recurrent Multi-Graph Neural Networks</a>.</li>
 </ul>
 <h4 id="68-Changepoint-Detection"><a href="#68-Changepoint-Detection" class="headerlink" title="68: Changepoint Detection"></a><em>68:</em> Changepoint Detection</h4><ul>
 <li><a href="https://arxiv.org/pdf/1209.1625.pdf" target="_blank" rel="noopener">Graph-Based Change-Point Detection</a>.<ul>
-<li>Morden Statisticl problem: every element of a sequences is a high dimensional vector or even a non-Euclidean data object(graph like data). Example: Network evolution(<em>change in network of social interactions among individuals</em>), Image analysis(<em>The detection of abrupt events, such as security breaches, storms, or brain activity</em>), Text or sequence analysis(writing style,  genomic sequence analysis in biology).</li>
+<li>Modern Statistical problem: every element of a sequence is a high-dimensional vector or even a non-Euclidean data object(graph like data). Example: Network evolution(<em>change in network of social interactions among individuals</em>), Image analysis(<em>The detection of abrupt events, such as security breaches, storms, or brain activity</em>), Text or sequence analysis(writing style,  genomics sequence analysis in biology).</li>
 </ul>
 </li>
 </ul>
@@ -210,7 +210,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ML-paper-reading/" style="font-size: 10px;">ML paper-reading</a> <a href="/tags/Prof-Suresh/" style="font-size: 10px;">Prof.Suresh</a> <a href="/tags/sdh/" style="font-size: 10px;">sdh</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a>
+      <a href="/tags/ML-paper-reading/" style="font-size: 10px;">ML paper-reading</a> <a href="/tags/Prof-Suresh/" style="font-size: 10px;">Prof.Suresh</a> <a href="/tags/sdh/" style="font-size: 20px;">sdh</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a>
     </div>
   </div>
 
@@ -232,6 +232,10 @@
       <ul>
         
           <li>
+            <a href="/2018/09/07/node-classification/">node classification, intro</a>
+          </li>
+        
+          <li>
             <a href="/2018/09/04/talk-with-Prof-Suresh-2/">talk-with-Prof.Suresh-2</a>
           </li>
         
@@ -245,10 +249,6 @@
         
           <li>
             <a href="/2018/08/31/reading-group-xy/">reading_group_xy</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/31/2/">Meeting in Aug 31, 2018</a>
           </li>
         
       </ul>
