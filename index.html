@@ -112,7 +112,7 @@
 <li><p><img src="/images/matrix-factorization.jpg" alt="matrix-factorization"></p>
 </li>
 </ul>
-<h5 id="Graph-Convolutional-Networks"><a href="#Graph-Convolutional-Networks" class="headerlink" title="Graph Convolutional Networks"></a>Graph Convolutional Networks</h5><ul>
+<h5 id="Graph-Convolutional-Networks-based-on-spectral"><a href="#Graph-Convolutional-Networks-based-on-spectral" class="headerlink" title="Graph Convolutional Networks(based on spectral)"></a>Graph Convolutional Networks(based on spectral)</h5><ul>
 <li><p>If we have a graph structured signals(a sequence of value), how can we find the hidden properties of these signals? Of cause, the signal of nodes are very important, but the node relationship is also meaningful. In the traditional ML field, we handle this kind of problem by CNN, because convolution could <em>extract</em> hidden pattern of data in the <em>neighborhood</em>. But how could we do convolutional on a graph?</p>
 </li>
 <li><p>In the traditional convolution, we have a convolution <em>kernel</em>, which decide which information we should aggregate. These <em>kernels</em> are predefined, because for the matrix convolution, every <em>node</em> has 8 node surround it. However, the convolution kernels of graph should comes from the graph structure itself: if a node is 1-step nearby to you, you should aggregate the information of it, is a node is far from you, the correspond value of convolution kernel you multiply should be zero.</p>
@@ -120,6 +120,22 @@
 <li><p>The basic method to generate the kernel is <em>Graph Fourier Transform</em> which converts a adjacency matrix to a <em>kernel</em>. If adjacency matrix is a positive symmetry matrix which could represented by the product between eigen-diag matrix and eigenvector. Then, the eigenvalues indicate the component of vector, in another word, if this node is close to one eigenvector. Then, this positive symmetry matrix is the <em>kernel</em> we want(more details in <a href="https://arxiv.org/pdf/1606.09375.pdf" target="_blank" rel="noopener">Convolutional Neural Networks on Graphs<br>with Fast Localized Spectral Filtering</a>). <a href="https://arxiv.org/pdf/1609.02907.pdf" target="_blank" rel="noopener">SEMI-SUPERVISED CLASSIFICATION WITH<br>GRAPH CONVOLUTIONAL NETWORKS</a> introduces a simple and reasonable way to calculate the <em>kernel</em> from adjacency matrix. As we know, the <em>ReLU</em> part is the “encoder”, and <em>softmax</em> is the decoder.</p>
 </li>
 <li><p>This paper also use a <em>semi-supervised method</em> to train the NN. Not all the node has a label(such as, this node belongs to class A). Then, the error function only calculate the error of labeled node. As the whole nodes shared the same weight matrix, we could also get the correct result.</p>
+</li>
+</ul>
+<h5 id="Graph-Convolutional-Networks-based-on-spatial"><a href="#Graph-Convolutional-Networks-based-on-spatial" class="headerlink" title="Graph Convolutional Networks(based on spatial)"></a>Graph Convolutional Networks(based on spatial)</h5><ul>
+<li><p>When we try to calculate a convolution, we are actually first split the data into different part, then times the <em>kernel</em> with each part, finally merge. So if we can find a reasonable way to split the graph into different but overlapping part, the convolution in graph is almost down. Here we introduce two ways.</p>
+</li>
+<li><p>In the <a href="https://arxiv.org/pdf/1312.6203.pdf" target="_blank" rel="noopener">Spectral Networks and Deep Locally Connected Networks on Graphs</a>, the author use a way to do convolution on graph-like data: each node has independent information vector. First, the author uses the metric designed by <a href="http://robotics.stanford.edu/~ang/papers/nips11-SelectingReceptiveFields.pdf" target="_blank" rel="noopener">Selecting Receptive Fields in Deep Networks</a>, which is a statistical method to define the distance of two vector. Then, we got a similarity matrix about each node pair. Then we could use a filter(in this paper, this is a threshold) to divide a neighborhood fro each node. Of cause there are some neighborhoods almost the same, then we randomly choose one. By using this nodes to neighborhoods mapping, we get a set of different but overlapping parts(if the number of nodes in the neighborhoods are not equal, add null nodes). If the neighborhood _NA_ and neighborhood _NB_ shared the same point from the origin graph, then we could say there is a edge between _NA_ and _NB_. The neighborhoods are actually have a graph-like structure. So the convolution could be recursive.</p>
+</li>
+<li><p>The disadvantage is that we adds a lot of null nodes, so the neighborhoods with less nodes would share higher priority. And the calculation complexity of <em>metric</em> make it could not used in the huge graph.</p>
+</li>
+<li><p><img src="/images/convolution-locally-on-graph.jpg" alt="convolution-locally-on-graph"></p>
+</li>
+<li><p>The author of <a href="https://arxiv.org/pdf/1605.05273.pdf" target="_blank" rel="noopener">Learning Convolutional Neural Networks for Graphs</a> provide another way. First, the author believes that not every node in the graph is really important: we could choose the most important _n_ nodes, do convolution on the neighborhood of these nodes. So we should try to guarantee these _n_ neighborhood include all the node in the graph. The author ranks the nodes in the graph by the sum of distance from it to all other nodes. This approach is called <em>ranking</em>. After <em>ranking</em>, we extract the first _n_ nodes. For each node, I use a <em>BFS</em> to construct the neighborhood. Then we <em>rank</em> the neighborhood, and sort the neighborhood. The sorted vector could be sent to do convolution now.</p>
+</li>
+<li><p><img src="/images/ranking-convolution-on-graph.jpg" alt="ranking-convolution-on-graph"></p>
+</li>
+<li><p>The complexity of this approach is also unafoldable.</p>
 </li>
 </ul>
 <h5 id="What-GraphSAGE-Do"><a href="#What-GraphSAGE-Do" class="headerlink" title="What GraphSAGE Do?"></a>What <em>GraphSAGE</em> Do?</h5><ul>
