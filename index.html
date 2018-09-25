@@ -63,6 +63,47 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-talk-with-prof-suresh-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/09/18/talk-with-prof-suresh-3/" class="article-date">
+  <time datetime="2018-09-18T21:05:26.000Z" itemprop="datePublished">2018-09-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/18/talk-with-prof-suresh-3/">talk-with-prof-suresh-3</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="Idea-of-DSL"><a href="#Idea-of-DSL" class="headerlink" title="Idea of DSL"></a>Idea of DSL</h5><h5 id="Idea-of-Partial-Result-Reusing"><a href="#Idea-of-Partial-Result-Reusing" class="headerlink" title="Idea of Partial Result Reusing"></a>Idea of Partial Result Reusing</h5><ul>
+<li>Image we have two algorithms. The first one is slow but accuracy, the second is</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/09/18/talk-with-prof-suresh-3/" data-id="cjmi6al4z0006nl4n28pmq894" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/suresh/">suresh</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-node-classification" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/09/07/node-classification/" class="article-date">
@@ -127,7 +168,7 @@
 </li>
 <li><p>In the <a href="https://arxiv.org/pdf/1312.6203.pdf" target="_blank" rel="noopener">Spectral Networks and Deep Locally Connected Networks on Graphs</a>, the author uses a way to do convolution on graph-like data: each node has independent information vectors. First, the author uses the metric designed by <a href="http://robotics.stanford.edu/~ang/papers/nips11-SelectingReceptiveFields.pdf" target="_blank" rel="noopener">Selecting Receptive Fields in Deep Networks</a>, which is a statistical method to define the distance of two vectors. Then, we get a similarity matrix about each node pair. Then we could use a filter(in this paper, this is a threshold) to divide a neighborhood for each node. If there are some neighborhoods almost the same, then we randomly choose one. By using these nodes to neighborhoods mapping, we get a set of different but overlapping parts(if the number of nodes in the neighborhoods are not equal, add null nodes). If the neighborhood _NA_ and neighborhood _NB_ shared the same point from the original graph, then we could say there is a edge between _NA_ and _NB_. The neighborhoods actually have a graph-like structure. So the convolution could be recursive.</p>
 </li>
-<li><p>The disadvantage is that this adds a lot of null nodes, so the neighborhoods with less nodes would have higher priority. And the calculation complexity of <em>metric</em> make it not scalable to large graphs.</p>
+<li><p>The disadvantage is that this adds a lot of null nodes, so the neighborhoods with less nodes would have higher priority. And the calculation complexity of <em>metric</em> make it not salable to large graphs.</p>
 </li>
 <li><p><img src="/images/convolution-locally-on-graph.jpg" alt="convolution-locally-on-graph"></p>
 </li>
@@ -135,7 +176,7 @@
 </li>
 <li><p><img src="/images/ranking-convolution-on-graph.jpg" alt="ranking-convolution-on-graph"></p>
 </li>
-<li><p>The complexity of this approach is also unscalable.</p>
+<li><p>The complexity of this approach is also unsalable.</p>
 </li>
 </ul>
 <h5 id="What-GraphSAGE-Do"><a href="#What-GraphSAGE-Do" class="headerlink" title="What GraphSAGE Do?"></a>What <em>GraphSAGE</em> Do?</h5><ul>
@@ -163,12 +204,14 @@
 </li>
 <li><p><img src="/images/minibatch-of-graphSAGE.jpg" alt="minibatch-of-graphSAGE"></p>
 </li>
+<li><p><strong>Weisfeiler-Lehman Isomorphism Test</strong>. This algorithm is a graph embedding version of <a href="http://www.jmlr.org/papers/volume12/shervashidze11a/shervashidze11a.pdf" target="_blank" rel="noopener">Weisfeiler-Lehman Graph Kernels</a>, which is simply a 1-dim version of <code>Weisfeiler-Lehman Isomorphism Test</code></p>
+</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/07/node-classification/" data-id="cjlvn69p4000i2imc4599r6xd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/07/node-classification/" data-id="cjmi6al5b000hnl4nq54q2419" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML-paper-reading/">ML paper-reading</a></li></ul>
@@ -222,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/04/talk-with-Prof-Suresh-2/" data-id="cjlo6x998000d2i5www9ybnbc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/04/talk-with-Prof-Suresh-2/" data-id="cjmi6al500009nl4nrf9lenn4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Prof-Suresh/">Prof.Suresh</a></li></ul>
@@ -284,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/04/non-euclidean-data/" data-id="cjlo3ca2b00082i5wc4do75p9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/04/non-euclidean-data/" data-id="cjmi6al4u0002nl4n6shxu9th" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML-paper-reading/">ML paper-reading</a></li></ul>
@@ -387,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/03/sdh-workflow-investigation/" data-id="cjlm8gysu00052imc094icou5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/03/sdh-workflow-investigation/" data-id="cjmi6al4y0005nl4nqiu46yqx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sdh/">sdh</a></li></ul>
@@ -436,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/31/reading-group-xy/" data-id="cjlidczfs00042i5vrofh5a23" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/31/reading-group-xy/" data-id="cjmi6al4x0004nl4ncfwuu33c" class="article-share-link">Share</a>
       
       
     </footer>
@@ -488,7 +531,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/31/2/" data-id="cjli8qru500032i5vahy4anxk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/31/2/" data-id="cjmi6al4p0000nl4n2fmyc2l4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -543,7 +586,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/29/first-post/" data-id="cjlfk3gjb00002i4mr07rt8gf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/29/first-post/" data-id="cjmi6al4s0001nl4nzou8apqk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/summary/">summary</a></li></ul>
@@ -568,7 +611,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-paper-reading/">ML paper-reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Prof-Suresh/">Prof.Suresh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdh/">sdh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/summary/">summary</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-paper-reading/">ML paper-reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Prof-Suresh/">Prof.Suresh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdh/">sdh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/summary/">summary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/suresh/">suresh</a></li></ul>
     </div>
   </div>
 
@@ -578,7 +621,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ML-paper-reading/" style="font-size: 20px;">ML paper-reading</a> <a href="/tags/Prof-Suresh/" style="font-size: 10px;">Prof.Suresh</a> <a href="/tags/sdh/" style="font-size: 10px;">sdh</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a>
+      <a href="/tags/ML-paper-reading/" style="font-size: 20px;">ML paper-reading</a> <a href="/tags/Prof-Suresh/" style="font-size: 10px;">Prof.Suresh</a> <a href="/tags/sdh/" style="font-size: 10px;">sdh</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a> <a href="/tags/suresh/" style="font-size: 10px;">suresh</a>
     </div>
   </div>
 
@@ -600,6 +643,10 @@
       <ul>
         
           <li>
+            <a href="/2018/09/18/talk-with-prof-suresh-3/">talk-with-prof-suresh-3</a>
+          </li>
+        
+          <li>
             <a href="/2018/09/07/node-classification/">node classification, intro</a>
           </li>
         
@@ -613,10 +660,6 @@
         
           <li>
             <a href="/2018/09/03/sdh-workflow-investigation/">sdh-workflow-investigation</a>
-          </li>
-        
-          <li>
-            <a href="/2018/08/31/reading-group-xy/">reading_group_xy</a>
           </li>
         
       </ul>
