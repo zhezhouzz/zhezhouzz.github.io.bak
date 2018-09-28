@@ -16,12 +16,12 @@
 <meta property="og:description" content="What is the Changepoint? Input: A data sequence: [a1;a2;a3…;an]. Output: P1: a index i, which indicates the distribution of [a1;a2;…ai] and the distribution of [ai+1; ai+2;…an] is different. P2: a int">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/images/changepoint-build-graph.jpg">
-<meta property="og:image" content="http://yoursite.com/images/Changepoint-p.jpg">
 <meta property="og:image" content="http://yoursite.com/images/changepoint-find.jpg">
+<meta property="og:image" content="http://yoursite.com/images/changepoint-p.jpg">
 <meta property="og:image" content="http://yoursite.com/images/changepoint-normalize.jpg">
 <meta property="og:image" content="http://yoursite.com/images/changepoint-after-normalize.jpg">
 <meta property="og:image" content="http://yoursite.com/images/changepoint-define-distance.jpg">
-<meta property="og:updated_time" content="2018-09-28T15:28:37.699Z">
+<meta property="og:updated_time" content="2018-09-28T16:50:48.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="graph-base-changepoint.md">
 <meta name="twitter:description" content="What is the Changepoint? Input: A data sequence: [a1;a2;a3…;an]. Output: P1: a index i, which indicates the distribution of [a1;a2;…ai] and the distribution of [ai+1; ai+2;…an] is different. P2: a int">
@@ -115,14 +115,13 @@
 </li>
 <li><p><strong>Find the change point possibility from the graph</strong>. For <code>P1</code>, the author iterates from <code>1</code> to <code>n</code> to set a hypothesis that this is the changepoint. Then, this assumed changepoint divided the data sequence in two subsequences. The author find how many edges in the graph whose end points are belonged in different subsequences. This value is called R<sub>G</sub>(t).</p>
 </li>
-<li><p><img src="/images/Changepoint-p.jpg" alt="changepoint-p"></p>
-</li>
 <li><p><img src="/images/changepoint-find.jpg" alt="changepoint-find"></p>
 </li>
 <li><p>However, from the figure we can find that if the assumed changepoint is near the head or tail of the data sequence, the R<sub>G</sub>(t) can not be very large, even if they are not the real changepoint. So we should normalize these R<sub>G</sub>(t) to compare them. After normalization, we can get reasonable result. <code>P2</code> is almost the same.</p>
 </li>
-<li><p><img src="/images/changepoint-normalize.jpg" alt="changepoint-normalize"></p>
+<li><p><img src="/images/changepoint-p.jpg" alt="changepoint-p"></p>
 </li>
+<li><img src="/images/changepoint-normalize.jpg" alt="changepoint-normalize"></li>
 <li><p><img src="/images/changepoint-after-normalize.jpg" alt="changepoint-after-normalize"></p>
 </li>
 <li><p><strong>Define the distance for non-Euclidean data</strong>. The author introduces two method. Both of them are based the edge analysis.</p>
@@ -134,7 +133,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/27/graph-base-changepoint-md/" data-id="cjmm5y1690000h460b972fvd9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/27/graph-base-changepoint-md/" data-id="cjmm8v2bd0001lo60nbt2sq6l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SDH/">SDH</a></li></ul>
