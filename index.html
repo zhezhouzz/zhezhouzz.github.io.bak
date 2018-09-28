@@ -63,10 +63,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-talk-with-prof-suresh-3" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-graph-base-changepoint-md" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2018/09/18/talk-with-prof-suresh-3/" class="article-date">
-  <time datetime="2018-09-18T21:05:26.000Z" itemprop="datePublished">2018-09-18</time>
+    <a href="/2018/09/27/graph-base-changepoint-md/" class="article-date">
+  <time datetime="2018-09-28T00:54:27.000Z" itemprop="datePublished">2018-09-27</time>
 </a>
     
   </div>
@@ -77,7 +77,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/18/talk-with-prof-suresh-3/">talk-with-prof-suresh-3</a>
+      <a class="article-title" href="/2018/09/27/graph-base-changepoint-md/">graph-base-changepoint.md</a>
     </h1>
   
 
@@ -85,17 +85,50 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="Idea-of-DSL"><a href="#Idea-of-DSL" class="headerlink" title="Idea of DSL"></a>Idea of DSL</h5><h5 id="Idea-of-Partial-Result-Reusing"><a href="#Idea-of-Partial-Result-Reusing" class="headerlink" title="Idea of Partial Result Reusing"></a>Idea of Partial Result Reusing</h5><ul>
-<li>Image we have two algorithms. The first one is slow but accuracy, the second is</li>
+        <h6 id="What-is-the-Changepoint"><a href="#What-is-the-Changepoint" class="headerlink" title="What is the Changepoint?"></a>What is the Changepoint?</h6><ul>
+<li>Input: A data sequence: [a<sub>1</sub>;a<sub>2</sub>;a<sub>3</sub>…;a<sub>n</sub>].</li>
+<li>Output:<ul>
+<li>P1: a index <code>i</code>, which indicates the distribution of [a<sub>1</sub>;a<sub>2</sub>;…a<sub>i</sub>] and the distribution of [a<sub>i+1</sub>; a<sub>i+2</sub>;…a<sub>n</sub>] is different.</li>
+<li>P2: a interval <code>i --&gt; j</code>, which indicates the distribution of [a<sub>1</sub>;a<sub>2</sub>;…a<sub>i</sub>], [a<sub>j+1</sub>;a<sub>j+2</sub>;…a<sub>n</sub>] and [a<sub>i+1</sub>; a<sub>i+2</sub>;…a<sub>j</sub>] is different.</li>
+</ul>
+</li>
+<li>Example: <code>Annual flow volume of the Nile River</code>. For example, in a well known study of the<br>annual flow volume of the Nile River at the city of Aswan, Egypt, from 1871 to 1970, each y<sub>i</sub> is a continuous measurement of the annual discharge from the river (Cobb, 1978), and the goal is to detect shifts in flow volume. If the distribution of y<sub>i</sub> were assumed to be normal, score- or likelihood- based tests can be applied (James, James and Siegmund, 1987). Bayesian and non-parametric approaches have also been developed (see Carlstein, M¨uller and Siegmund (1994) for a survey).</li>
+</ul>
+<h5 id="What-is-the-problem"><a href="#What-is-the-problem" class="headerlink" title="What is the problem?"></a>What is the problem?</h5><ul>
+<li><strong>Non-Euclidean data</strong>. How to find the changepoint of graph data? Example of social network: extract the information on the caller, callee and time for every call that was made during the study period. The question of interest is whether phone call patterns changed during this time, which may reflect a change in relationship among these subjects.</li>
+</ul>
+<h5 id="How-this-paper-do"><a href="#How-this-paper-do" class="headerlink" title="How this paper do?"></a>How this paper do?</h5><ul>
+<li><p>First the author map the data(maybe non-Euclidean data) sequence to a <code>normed space</code>, which is a space we can define a reasonable <code>distance</code>. If we can calculate the distance of every data of the sequence, we can test every kind of possibility of the change point. We split the data sequence arbitrarily, and test the distance of every two data in the tow subsequences(There are some statistic method, like two simple T-test). But the complexity is large. Then, the author introduces a <code>graph based</code> method to deal with this problem. If we can draw a graph in this <code>normed space</code> to connect the each data(point) in the space, we could reduce the calculation. Intuitively, there is not a edge between two data nodes in the graph, we do not need to calculate the distance of them. Because the distance of them must be every large. Then, we would only to calculate the distance of nodes nearby, or simpler, we can believes the connected node pairs have the same low distance.</p>
+</li>
+<li><p><strong>Build a reasonable graph in the normed space</strong>. The author introduces three method to build graph: minimum spanning tree (MST), minimum distance pairing (MDP), nearest neighbor graph (NNG). MDP divides the n subjects into n/2 (assuming n is even) non-overlapping pairs in such a way as to minimize the total of n/2 distances between pairs(if odd, add a null point which has 0 distance with every node). NNG connects each data point to its nearest neighbor.</p>
+</li>
+<li><p><img src="/images/changepoint-build-graph.jpg" alt="changepoint-build-graph"></p>
+</li>
+<li><p><strong>Find the change point possibility from the graph</strong>. For <code>P1</code>, the author iterates from <code>1</code> to <code>n</code> to set a hypothesis that this is the changepoint. Then, this assumed changepoint divided the data sequence in two subsequences. The author find how many edges in the graph whose end points are belonged in different subsequences. This value is called R<sub>G</sub>(t).</p>
+</li>
+<li><p><img src="/images/Changepoint-p.jpg" alt="changepoint-p"></p>
+</li>
+<li><p><img src="/images/changepoint-find.jpg" alt="changepoint-find"></p>
+</li>
+<li><p>However, from the figure we can find that if the assumed changepoint is near the head or tail of the data sequence, the R<sub>G</sub>(t) can not be very large, even if they are not the real changepoint. So we should normalize these R<sub>G</sub>(t) to compare them. After normalization, we can get reasonable result. <code>P2</code> is almost the same.</p>
+</li>
+<li><p><img src="/images/changepoint-normalize.jpg" alt="changepoint-normalize"></p>
+</li>
+<li><p><img src="/images/changepoint-after-normalize.jpg" alt="changepoint-after-normalize"></p>
+</li>
+<li><p><strong>Define the distance for non-Euclidean data</strong>. The author introduces two method. Both of them are based the edge analysis.</p>
+</li>
+<li><p><img src="/images/changepoint-define-distance.jpg" alt="changepoint-define-distance"></p>
+</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/18/talk-with-prof-suresh-3/" data-id="cjmi7bqw70009us4ntgxrvfvh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/27/graph-base-changepoint-md/" data-id="cjmm5y1690000h460b972fvd9" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/suresh/">suresh</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SDH/">SDH</a></li></ul>
 
     </footer>
   </div>
@@ -211,7 +244,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/07/node-classification/" data-id="cjmi7bqwi000hus4nsn5huzvw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/07/node-classification/" data-id="cjmm5y172000hh460w9y6bs5q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML-paper-reading/">ML paper-reading</a></li></ul>
@@ -265,7 +298,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/04/talk-with-Prof-Suresh-2/" data-id="cjmi7bqw60006us4n4dqbqty5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/04/talk-with-Prof-Suresh-2/" data-id="cjmm5y16m0009h460685yqk3h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Prof-Suresh/">Prof.Suresh</a></li></ul>
@@ -327,7 +360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/04/non-euclidean-data/" data-id="cjmi7bqw00002us4n1uzoi708" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/04/non-euclidean-data/" data-id="cjmm5y16g0004h460si349s9e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ML-paper-reading/">ML paper-reading</a></li></ul>
@@ -430,7 +463,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/09/03/sdh-workflow-investigation/" data-id="cjmi7bqw40005us4nyonbwjbw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/09/03/sdh-workflow-investigation/" data-id="cjmm5y16k0008h460z0clrq27" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sdh/">sdh</a></li></ul>
@@ -479,7 +512,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/31/reading-group-xy/" data-id="cjmi7bqw30004us4n174nlvf3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/31/reading-group-xy/" data-id="cjmm5y16i0005h460kqw78eb3" class="article-share-link">Share</a>
       
       
     </footer>
@@ -531,7 +564,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/31/2/" data-id="cjmi7bqvu0000us4nuokajq2k" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/31/2/" data-id="cjmm5y16f0003h4607kd8esp5" class="article-share-link">Share</a>
       
       
     </footer>
@@ -586,7 +619,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/08/29/first-post/" data-id="cjmi7bqvy0001us4njzy10ffh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2018/08/29/first-post/" data-id="cjmm5y16c0001h460c3s5fi4k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/summary/">summary</a></li></ul>
@@ -611,7 +644,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-paper-reading/">ML paper-reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Prof-Suresh/">Prof.Suresh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdh/">sdh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/summary/">summary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/suresh/">suresh</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-paper-reading/">ML paper-reading</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Prof-Suresh/">Prof.Suresh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SDH/">SDH</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sdh/">sdh</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/summary/">summary</a></li></ul>
     </div>
   </div>
 
@@ -621,7 +654,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/ML-paper-reading/" style="font-size: 20px;">ML paper-reading</a> <a href="/tags/Prof-Suresh/" style="font-size: 10px;">Prof.Suresh</a> <a href="/tags/sdh/" style="font-size: 10px;">sdh</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a> <a href="/tags/suresh/" style="font-size: 10px;">suresh</a>
+      <a href="/tags/ML-paper-reading/" style="font-size: 20px;">ML paper-reading</a> <a href="/tags/Prof-Suresh/" style="font-size: 10px;">Prof.Suresh</a> <a href="/tags/SDH/" style="font-size: 10px;">SDH</a> <a href="/tags/sdh/" style="font-size: 10px;">sdh</a> <a href="/tags/summary/" style="font-size: 10px;">summary</a>
     </div>
   </div>
 
@@ -643,7 +676,7 @@
       <ul>
         
           <li>
-            <a href="/2018/09/18/talk-with-prof-suresh-3/">talk-with-prof-suresh-3</a>
+            <a href="/2018/09/27/graph-base-changepoint-md/">graph-base-changepoint.md</a>
           </li>
         
           <li>
